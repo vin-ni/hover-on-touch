@@ -7,7 +7,7 @@ It requires Hammer.js as a dependency. Add it before the plugin:
 ```js
 <script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
 ```
-
+This is the general HTML structure. There's an object wrapper with an info and a cover div. You can add as many objects as you want
 
 ```html
 // get a reference to an element
