@@ -3,7 +3,11 @@
 This is a pure Javascript Plugin for an alternative hover function on mobile devices. It shows secondary information on Taphold &amp; goes to a link on Tap.
 
 It requires Hammer.js as a dependency. Add it before the plugin:
+
+```js
 <script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
+```
+
 
 ```html
 // get a reference to an element
