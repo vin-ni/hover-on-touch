@@ -5,9 +5,9 @@ This is a pure Javascript Plugin for an alternative hover function on mobile dev
 
 Here's a demo for [touch devices](http://vinzenzaubry.com/demos/hoverontouch/). And here's a demo video for [desktops](http://vinzenzaubry.com/demos/hoverontouch/desktop).
 
-![Preview of the Plugin on a Portfolio](/media/readme.gif?raw=true "Preview")
-
 When you touch an element, the cover is hidden and the secondary information is shown. If you release under 250ms the touch event is interpreted as a click and a redirection to the given link is triggered. Otherwise, if you hold longer, the event is interpreted as a »Taphold« and the cover is shown again on release. The user can read the secondary information while scrolling the page for example.
+
+![Preview of the Plugin on a Portfolio](/media/readme.gif?raw=true "Preview")
 
 HTML Structure
 ------------
