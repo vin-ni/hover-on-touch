@@ -30,6 +30,10 @@ This Plugin requires Hammer.js. Add it before the plugin in your html:
 ```js
 <script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
 ```
+Features
+------------
+- Put anything inside the info div
+- gifs restart on display
 
 The script will not interfere with any hover animations on desktop browsers (non touch devices) .
 
