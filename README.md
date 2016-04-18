@@ -34,8 +34,7 @@ Features
 ------------
 - Put anything inside the info div
 - gifs restart on display
-<br>
+- The script will not interfere with any hover animations on desktop browsers (non touch devices) .
 
-The script will not interfere with any hover animations on desktop browsers (non touch devices) .
-
+If anyone wants to contribute, just fork the project or write me at hi@vinzenzaubry.com :)
 Created by Vinzenz Aubry.
