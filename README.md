@@ -13,17 +13,14 @@ HTML Structure
 ------------
 There's an object wrapper with an info and a cover div. You can add as many objects as you want.
 ```html
-// get a reference to an element
-<div class="object">
-    <div class="info">
-        //Put the secondary Information here
-    </div>
-    <div class="cover">
-        // Put the Cover Informaton here
-    </div>
+<div class="object" data-triggerlink="https://www.example.com">
+        <div class="cover">
+            // Put the Cover Informaton here
+        </div>
+        <div class="info">
+            //Put the secondary Information here
+        </div>
 </div>
-
-});
 ```
 
 Features
