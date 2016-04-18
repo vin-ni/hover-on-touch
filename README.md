@@ -1,4 +1,4 @@
-# Hover on Edit 1.0
+# Hover on Touch 1.0
 
 This is a pure Javascript Plugin for an alternative hover function on mobile devices. It shows secondary information on Taphold &amp; goes to a link on Tap.
 
