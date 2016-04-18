@@ -25,18 +25,20 @@ There's an object wrapper with an info and a cover div. You can add as many obje
 
 });
 ```
-Dependencies
-------------
-This Plugin requires Hammer.js. Add it before the plugin in your html:
 
-```js
-<script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
-```
 Features
 ------------
 - Put anything inside the info div
 - gifs restart on display
 - The script will not interfere with any hover animations on desktop browsers (non touch devices) .
+
+Dependencies
+------------
+This Plugin requires Hammer.js. Add it before the plugin in your html:
+
+```javascript
+<script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
+```
 
 If anyone wants to contribute, just fork the project or write me at hi@vinzenzaubry.com :)
 Created by Vinzenz Aubry.
