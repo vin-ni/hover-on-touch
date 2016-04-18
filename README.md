@@ -15,7 +15,7 @@ Object wrapper with an info and a cover div. You can add as many objects as you 
 ```html
 <div class="object" data-triggerlink="https://www.example.com">
         <div class="cover">
-            // Put the Cover Informaton here
+            // Put the cover Informaton here
         </div>
         <div class="info">
             //Put the secondary Information here
