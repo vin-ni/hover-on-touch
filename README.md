@@ -20,7 +20,7 @@ When you touch an element, the cover is hidden and the secondary information is 
 
 HTML Structure
 ------------
-Object wrapper with an info and a cover div. You can add as many objects as you want.
+Each element has an object wrapper with an info and a cover div. You can add as many objects as you want.
 ```html
 <div class="object" data-triggerlink="https://www.example.com">
         <div class="cover">
