@@ -74,7 +74,6 @@ a:hover {
 }
 
 .info {
-    visibility: hidden;
     position: absolute;
     width: inherit;
     height: inherit;
@@ -169,6 +168,14 @@ img {
 /* ==========================================================================
    Media Queries
    ========================================================================== */
+
+/*Fallback for touch devices with hover input eg. samsung galaxy note*/
+@media only screen and (max-width : 768px) {
+    .cover:hover {
+        opacity: 0;
+    }
+}
+
 
 @media screen and (max-device-width: 1024px){
   .desktop {

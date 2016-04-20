@@ -1,6 +1,7 @@
 //
 //  hoverontouch.js
 //  An alternative hover function on mobile devices.
+//  Version 1.1 20/04/16
 //
 //  Created by Vinzenz Aubry on 19/04/16. 
 //  Copyright 2016 Vinzenz Aubry. All rights reserved.
@@ -14,10 +15,6 @@ var all_objects = document.getElementsByClassName('object');
 //Add Hammer Listener to every object
 for (var i = 0; i < all_objects.length; ++i) {
     var item = all_objects[i];
-
-    //Hide Info on Start
-    var elemHide = item.querySelector('.info');
-    elemHide.style.visibility = 'hidden';
 
     var mc = new Hammer.Manager(item);
     mc.add( new Hammer.Tap({
@@ -39,16 +36,14 @@ mc.on('press tap', function(event) {
         var elemInfo = elem.querySelector('.info');
         var elemCover = elem.querySelector('.cover');
 
-        elemCover.style.visibility = 'hidden';
-        elemInfo.style.visibility = 'visible';
+        elemCover.style.opacity = '0';
 
         // Checking if Image is a Gif. If "Yes" restart the Gif from the beginning
         var images = elemInfo.querySelectorAll('img');
         restartImagesIfGif (images);
 
         if (event.type == "tap") {
-            elemCover.style.visibility = 'visible';
-            elemInfo.style.visibility = 'hidden';
+            elemCover.style.opacity = '1';
             
             // Get the link when tapped
             var link = elem.dataset.triggerlink;
@@ -61,11 +56,9 @@ mc.on('press tap', function(event) {
 mc.on('pressup', function(event) {
     // event.preventDefault();
     var elem = getClosest(event.target, ".object");
-    var elemInfo = elem.querySelector('.info');
     var elemCover = elem.querySelector('.cover');
 
-    elemCover.style.visibility = 'visible';
-    elemInfo.style.visibility = 'hidden';
+    elemCover.style.opacity = '1';
 
     // unhideAll might be unnecesary on deploy
     // unhideAll ();

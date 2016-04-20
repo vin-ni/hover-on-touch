@@ -38,51 +38,19 @@ a:hover {
     background-color: green;
 }
 
-
-
-
-
-
-
-
-
-
-
 /* ==========================================================================
    Media Queries
    ========================================================================== */
 
- /*==========  Non-Mobile First Method  ==========*/
-
-    /*Above */
-    @media only screen and (min-width : 1201px) {
-
+/*Fallback for touch devices with hover input eg. samsung galaxy note*/
+@media only screen and (max-width : 768px) {
+    .cover:hover {
+        opacity: 0;
     }
+}
 
-    /* Large Devices, Wide Screens */
-    @media only screen and (max-width : 1200px) {
 
-    }
 
-    /* Medium Devices, Desktops */
-    @media only screen and (max-width : 992px) {
-
-    }
-
-    /* Small Devices, Tablets */
-    @media only screen and (max-width : 768px) {
-
-    }
-
-    /* Extra Small Devices, Phones */ 
-    @media only screen and (max-width : 480px) {
-
-    }
-
-    /* Custom, iPhone Retina */ 
-    @media only screen and (max-width : 320px) {
-        
-    }
 
 @media print,
        (-o-min-device-pixel-ratio: 5/4),
