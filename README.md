@@ -45,6 +45,8 @@ These are some points I think are necessary to make this approach work ux wise:
 - the elements should take reasonable space on the screen, so the user touches them automatically while scrolling (Otherwise this feature would have to be explained)
 - the secondary information should leave space for the thumb
 
+[Link] (http://vinzenzaubry.com/journal/hover-on-touch/) to my blogpost with additional thought.
+
 ## Features
 
 - Put anything inside the info div
