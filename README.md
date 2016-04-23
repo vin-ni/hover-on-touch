@@ -38,6 +38,13 @@ Each element has an object wrapper with an info and a cover div. Add as many obj
     }
 }
 ```
+## UX
+These are some points I think are necessary to make this approach work ux wise:
+
+- all elements of the grid should have a second layer that can be shown (to be consistent)
+- the elements should take reasonable space on the screen, so the user touches them automatically while scrolling (Otherwise this feature would have to be explained)
+- the secondary information should leave space for the thumb
+
 ## Features
 
 - Put anything inside the info div
