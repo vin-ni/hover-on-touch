@@ -50,7 +50,8 @@ These are some points I think are necessary to make this approach work ux wise:
 ## Features
 
 - Put anything inside the info div
-- gifs restart on display
+- Works while scrolling, so users can see details while scrolling through the page
+- Gifs restart on display
 - The script will not interfere with any hover animations on desktop browsers (non touch devices) .
 
 
