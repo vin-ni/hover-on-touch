@@ -4,6 +4,8 @@ This is a pure Javascript Plugin for an alternative hover function on mobile dev
 
 Here's a demo for [touch devices](http://vinzenzaubry.com/demos/hoverontouch/). And here's a demo video for [desktops](http://vinzenzaubry.com/demos/hoverontouch/desktop).
 
+Some thoughts on what the plugin can be used for can be found on my [blog](http://vinzenzaubry.com/journal/hover-on-touch/) entry. 
+
 ## Installing
 This Plugin requires Hammer.js. Add it before the plugin in your html:
 
