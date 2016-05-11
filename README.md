@@ -33,6 +33,7 @@ Each element has an object wrapper with an info and a cover div. Add as many obj
 ```
 ### Css
 ```css
+/*Example*/
 .object {
     width: 100vw;
     height: 250px;
