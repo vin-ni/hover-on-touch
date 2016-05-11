@@ -33,6 +33,26 @@ Each element has an object wrapper with an info and a cover div. Add as many obj
 ```
 ### Css
 ```css
+.object {
+    width: 100vw;
+    height: 250px;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.cover {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background-color: blue;
+}
+
+.info {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background-color: green;
+}
 /*Fallback for touch devices with hover input eg. Samsung Galaxy Note*/
 @media only screen and (max-width : 768px) {
     .cover:hover {
