@@ -75,6 +75,7 @@ These are some points I think are necessary to make this approach work ux wise:
 - Put anything inside the info div
 - Works while scrolling, so users can see details while scrolling through the page
 - Gifs restart on display
+- For looping animations save the gifs as »looping«, for normal animations save them as »playing once«
 - The script will not interfere with any hover animations on desktop browsers (non touch devices) .
 
 
