@@ -17,6 +17,7 @@ This Plugin requires Hammer.js. Add it before the plugin in your html:
 When you touch an element, the cover is hidden and the secondary information is shown. If you release under 250ms the touch event is interpreted as a click and a redirection to the given link is triggered. Otherwise, if you hold longer, the event is interpreted as a »Taphold« and the cover is shown again on release. The user can read the secondary information while scrolling the page for example.
 
 ![Preview of the Plugin on a Portfolio](/media/readme.gif?raw=true "Preview")
+![Preview with nice colors and animation](/media/fun.gif?raw=true "Preview")
 ![Preview of the Plugin for a shop](/media/shop.gif?raw=true "Preview")
 
 ## HTML Structure
