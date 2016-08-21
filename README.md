@@ -56,12 +56,7 @@ Each element has an object wrapper with an info and a cover div. Add as many obj
     height: inherit;
     background-color: green;
 }
-/*Fallback for touch devices with hover input eg. Samsung Galaxy Note*/
-@media only screen and (max-width : 768px) {
-    .cover:hover {
-        opacity: 0;
-    }
-}
+
 ```
 ## UX
 These are some points I think are necessary to make this approach work ux wise:
