@@ -19,6 +19,7 @@ When you touch an element, the cover is hidden and the secondary information is 
 ![Preview of the Plugin on a Portfolio](/media/readme.gif?raw=true "Preview")
 ![Preview with nice colors and animation](/media/fun.gif?raw=true "Preview")
 ![Preview of the Plugin for a shop](/media/shop.gif?raw=true "Preview")
+![Preview of the Plugin for a text with an ad behind](/media/text.gif?raw=true "Preview")
 
 ## HTML Structure
 
