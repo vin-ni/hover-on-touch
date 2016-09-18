@@ -1,7 +1,7 @@
 //
 //  hoverontouch.js
 //  An alternative hover function on mobile devices.
-//  Version 1.1 20/04/16
+//  Version 2.0 18/09/16
 //
 //  Created by Vinzenz Aubry on 19/04/16. 
 //  Copyright 2016 Vinzenz Aubry. All rights reserved.

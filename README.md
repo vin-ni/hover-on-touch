@@ -1,4 +1,4 @@
-# Hover on Touch 1.1
+# Hover on Touch 2.0
 
 This is a pure Javascript Plugin for an alternative hover function on mobile devices. It shows secondary information on »**Taphold**« and goes to a link on »**Tap**«.
 
@@ -78,4 +78,4 @@ These are some points I think are necessary to make this approach work ux wise:
 
 If anyone wants to contribute, just fork the project or write me at hi@vinzenzaubry.com :)
 
-Created by Vinzenz Aubry.
+Created by Vinzenz Aubry
