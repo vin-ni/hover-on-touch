@@ -9,10 +9,6 @@
 //
 
 
-// for main.js:
-// var hoverOnTouch = new HoverOnTouch();
-
-
 function HoverOnTouch() {
     //this.loadHammer();
     //if hammer loaded init, load with js callback

@@ -1,6 +1,6 @@
 body {
-        font-family: 'Open Sans', sans-serif;
-        overflow-x:hidden;
+    font-family: 'Open Sans', sans-serif;
+    overflow-x:hidden;
 }
 
 
@@ -112,8 +112,6 @@ img {
     height: auto;
 }
 
-
-
 .desktop {
     visibility: visible;
     background-color: lightgrey;
@@ -164,6 +162,47 @@ img {
     margin-top: 40vh;
    font-size: 1.4em;
 }
+
+
+/*New CSS*/
+.testObject {
+    width: 100vw;
+    height: 200px;
+    margin-bottom: 20px;
+    background-color: yellow;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.testObject:hover {
+    background-color: red;
+}
+
+.coverTest {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.coverTest:hover {
+    opacity: 0;
+}
+
+.infoTest {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+
 
 /* ==========================================================================
    Media Queries
