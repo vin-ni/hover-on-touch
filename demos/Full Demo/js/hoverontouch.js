@@ -1,7 +1,7 @@
-//
+//  jshint ignore: start
 //  hoverontouch.js
 //  An alternative hover function on mobile devices.
-//  Version 2.0 18/09/16
+//  Version 2.X XX/11/16
 //
 //  Created by Vinzenz Aubry on 19/04/16. 
 //  Copyright 2016 Vinzenz Aubry. All rights reserved.
@@ -9,27 +9,37 @@
 //
 
 
-// ================Hammer JS Tap Longpress================
-var all_objects = document.getElementsByClassName('object');
-
-//Add Hammer Listener to every object
-for (var i = 0; i < all_objects.length; ++i) {
-    var item = all_objects[i];
-
-    var mc = new Hammer.Manager(item);
-    mc.add( new Hammer.Tap({
-        time: 250,
-    }) );
-    mc.add(new Hammer.Press({
-        event: 'press',
-        pointer: 1,
-        threshold: 1000,
-        time: 1,
-    }));
+// for main.js:
+// var hoverOnTouch = new HoverOnTouch();
 
 
-    //Function triggered on tap and press
-    mc.on('press tap', function(event) {
+function HoverOnTouch() {
+    //this.loadHammer();
+    //if hammer loaded init, load with js callback
+    this.init();
+}
+
+HoverOnTouch.prototype.init = function () {
+    var all_objects = document.getElementsByClassName('object');
+
+    //Add Hammer Listener to every object
+    for (var i = 0; i < all_objects.length; ++i) {
+        var item = all_objects[i];
+
+        var mc = new Hammer.Manager(item);
+        mc.add( new Hammer.Tap({
+            time: 250,
+        }) );
+        mc.add(new Hammer.Press({
+            event: 'press',
+            pointer: 1,
+            threshold: 1000,
+            time: 1,
+        }));
+
+
+        //Function triggered on tap and press
+        mc.on('press tap', function(event) {
             event.preventDefault();
 
             var elem = getClosest(event.target, ".object");
@@ -48,26 +58,24 @@ for (var i = 0; i < all_objects.length; ++i) {
                 // Get the link when tapped
                 var link = elem.dataset.triggerlink;
                 window.location.href = link;
-                
-                }   
-            
+            }         
         });
 
-    mc.on('pressup', function(event) {
-        // event.preventDefault();
-        var elem = getClosest(event.target, ".object");
-        var elemCover = elem.querySelector('.cover');
+        mc.on('pressup', function(event) {
+            // event.preventDefault();
+            var elem = getClosest(event.target, ".object");
+            var elemCover = elem.querySelector('.cover');
 
-        elemCover.style.opacity = '1';
+            elemCover.style.opacity = '1';
 
-        // unhideAll might be unnecesary on deploy
-        // unhideAll ();
-        // event.preventDefault();
-    });
+            // unhideAll might be unnecesary on deploy
+            // unhideAll ();
+            // event.preventDefault();
+        });
+    }
 }
 
-
-                                        // ===== Devics Stuff ==== //
+                                        // ===== Device Stuff ==== //
 
 //Block the "Tapohold" Context Menu on Android
 window.oncontextmenu = function(event) {
@@ -95,15 +103,6 @@ function restartImagesIfGif (imageArray) {
     };
 }
 
-function findElementByClass (parent, klassName) {
-    for (var i = 0; i < parent.childNodes.length; i++) {
-        if (hasClass(parent.childNodes[i], klassName) === true) {
-            alert(parent.childNodes[i].className);
-          // parent.childNodes[i].style.visibility = 'visible';
-          break;
-            }        
-        }
-}
 
 
 /**
@@ -153,7 +152,6 @@ var getClosest = function (elem, selector) {
 
 
 // Old functions not used anymore
-
 function unhideAll () {
     for (var i = 0; i < all_objects.length; ++i) {
     var item = all_objects[i]; 
@@ -166,6 +164,17 @@ function unhideAll () {
         }
     };
 };
+
+
+function findElementByClass (parent, klassName) {
+    for (var i = 0; i < parent.childNodes.length; i++) {
+        if (hasClass(parent.childNodes[i], klassName) === true) {
+            alert(parent.childNodes[i].className);
+          // parent.childNodes[i].style.visibility = 'visible';
+          break;
+            }        
+        }
+}
 
 function hasClass( elem, klass ) {
      return (" " + elem.className + " " ).indexOf( " "+klass+" " ) > -1;
