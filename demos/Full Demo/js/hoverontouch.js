@@ -1,7 +1,7 @@
 //
 //  hoverontouch.js
 //  An alternative hover function on mobile devices.
-//  Version 1.1 20/04/16
+//  Version 2.0 18/09/16
 //
 //  Created by Vinzenz Aubry on 19/04/16. 
 //  Copyright 2016 Vinzenz Aubry. All rights reserved.
@@ -28,42 +28,42 @@ for (var i = 0; i < all_objects.length; ++i) {
     }));
 
 
-//Function triggered on tap and press
-mc.on('press tap', function(event) {
-        event.preventDefault();
+    //Function triggered on tap and press
+    mc.on('press tap', function(event) {
+            event.preventDefault();
 
+            var elem = getClosest(event.target, ".object");
+            var elemInfo = elem.querySelector('.info');
+            var elemCover = elem.querySelector('.cover');
+
+            elemCover.style.opacity = '0';
+
+            // Checking if Image is a Gif. If "Yes" restart the Gif from the beginning
+            var images = elemInfo.querySelectorAll('img');
+            restartImagesIfGif (images);
+
+            if (event.type == "tap") {
+                elemCover.style.opacity = '1';
+                
+                // Get the link when tapped
+                var link = elem.dataset.triggerlink;
+                window.location.href = link;
+                
+                }   
+            
+        });
+
+    mc.on('pressup', function(event) {
+        // event.preventDefault();
         var elem = getClosest(event.target, ".object");
-        var elemInfo = elem.querySelector('.info');
         var elemCover = elem.querySelector('.cover');
 
-        elemCover.style.opacity = '0';
+        elemCover.style.opacity = '1';
 
-        // Checking if Image is a Gif. If "Yes" restart the Gif from the beginning
-        var images = elemInfo.querySelectorAll('img');
-        restartImagesIfGif (images);
-
-        if (event.type == "tap") {
-            elemCover.style.opacity = '1';
-            
-            // Get the link when tapped
-            var link = elem.dataset.triggerlink;
-            window.location.href = link;
-            
-            }   
-        
+        // unhideAll might be unnecesary on deploy
+        // unhideAll ();
+        // event.preventDefault();
     });
-
-mc.on('pressup', function(event) {
-    // event.preventDefault();
-    var elem = getClosest(event.target, ".object");
-    var elemCover = elem.querySelector('.cover');
-
-    elemCover.style.opacity = '1';
-
-    // unhideAll might be unnecesary on deploy
-    // unhideAll ();
-    // event.preventDefault();
-});
 }
 
 
