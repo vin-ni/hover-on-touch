@@ -1,4 +1,5 @@
 //  jshint ignore: start
+
 //  hoverontouch.js
 //  An alternative hover function on mobile devices.
 //  Version 2.X XX/11/16
@@ -9,6 +10,10 @@
 //
 
 
+//#To Do
+//# Only run on Mobile
+
+
 function HoverOnTouch() {
     //this.loadHammer();
     //if hammer loaded init, load with js callback
@@ -16,7 +21,7 @@ function HoverOnTouch() {
 }
 
 HoverOnTouch.prototype.init = function () {
-    var all_objects = document.getElementsByClassName('object');
+    var all_objects = document.getElementsByClassName('testObject');
 
     //Add Hammer Listener to every object
     for (var i = 0; i < all_objects.length; ++i) {
@@ -25,7 +30,8 @@ HoverOnTouch.prototype.init = function () {
         var mc = new Hammer.Manager(item);
         mc.add( new Hammer.Tap({
             time: 250,
-        }) );
+        }));
+
         mc.add(new Hammer.Press({
             event: 'press',
             pointer: 1,
@@ -38,38 +44,48 @@ HoverOnTouch.prototype.init = function () {
         mc.on('press tap', function(event) {
             event.preventDefault();
 
-            var elem = getClosest(event.target, ".object");
-            var elemInfo = elem.querySelector('.info');
-            var elemCover = elem.querySelector('.cover');
+            // console.log(this);
+            // console.log(event);
 
-            elemCover.style.opacity = '0';
+            var elem = event.target;
+            elem.classList.add("hoverOnTouch");
+
+            // var elem = getClosest(event.target, ".object");
+            // var elemInfo = elem.querySelector('.info');
+            // var elemCover = elem.querySelector('.cover');
+
+            // elemCover.style.opacity = '0';
 
             // Checking if Image is a Gif. If "Yes" restart the Gif from the beginning
-            var images = elemInfo.querySelectorAll('img');
-            restartImagesIfGif (images);
+            // var images = elemInfo.querySelectorAll('img');
+            // restartImagesIfGif (images);
 
-            if (event.type == "tap") {
-                elemCover.style.opacity = '1';
-                
+            if (event.type === "tap") {
+                // elemCover.style.opacity = '1';
+                // var link = event.target.closest('a');
                 // Get the link when tapped
-                var link = elem.dataset.triggerlink;
+                var link = event.target.closest('a').getAttribute("href");
                 window.location.href = link;
             }         
         });
 
         mc.on('pressup', function(event) {
-            // event.preventDefault();
-            var elem = getClosest(event.target, ".object");
-            var elemCover = elem.querySelector('.cover');
+            event.preventDefault();
+            // var elem = getClosest(event.target, ".object");
+            // var elemCover = elem.querySelector('.cover');
+            console.log("alert");
 
-            elemCover.style.opacity = '1';
+            var elem = event.target;
+            elem.classList.remove("hoverOnTouch");
+
+            // elemCover.style.opacity = '1';
 
             // unhideAll might be unnecesary on deploy
             // unhideAll ();
             // event.preventDefault();
         });
     }
-}
+};
 
                                         // ===== Device Stuff ==== //
 
@@ -87,7 +103,7 @@ function resetGif(obj) {
     var imageUrl = img.src;
     img.src = "#";
     img.src = imageUrl;
-};
+}
 
 // Loop Through Array of Images
 function restartImagesIfGif (imageArray) {
@@ -95,8 +111,8 @@ function restartImagesIfGif (imageArray) {
         var fileExtension = imageArray[i].src.split('.').pop();
         if (fileExtension === "gif") {
            resetGif(imageArray[i]);
-        };
-    };
+        }
+    }
 }
 
 
@@ -148,6 +164,10 @@ var getClosest = function (elem, selector) {
 
 
 // Old functions not used anymore
+function hasClass( elem, klass ) {
+     return (" " + elem.className + " " ).indexOf( " "+klass+" " ) > -1;
+}
+
 function unhideAll () {
     for (var i = 0; i < all_objects.length; ++i) {
     var item = all_objects[i]; 
@@ -158,8 +178,8 @@ function unhideAll () {
           item.childNodes[j].style.visibility = 'visible';
             }        
         }
-    };
-};
+    }
+}
 
 
 function findElementByClass (parent, klassName) {
@@ -170,8 +190,4 @@ function findElementByClass (parent, klassName) {
           break;
             }        
         }
-}
-
-function hasClass( elem, klass ) {
-     return (" " + elem.className + " " ).indexOf( " "+klass+" " ) > -1;
 }
