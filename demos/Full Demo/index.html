@@ -25,12 +25,22 @@
 
         <h1>Hover on Touch</h1>
 
-        <a href="https://www.example.com"><div class="testObject hoverontouch" id="testObject"></div></a>
-        <p class="link hoverontouch">Try out this link</p>
-        <a href="https://www.example.com"><div class="testObject hoverontouch" id="testObject">
+        <div class="testObject ">
+        <a href="https://www.example.com" class="hoverontouch"><div class="testObject"></div></a>
+
+        <a href="https://www.example.com" class="hoverontouch"><p class="link">Try out this link</p></a>
+
+        <a href="https://www.example.com" class="hoverontouch">
+            <div class="testObject">
+                <div class="info pink"><img src="img/01Info.png"></div>
+                <div class="cover pink "><img src="img/01Cover.png"></div>
+            </div>
+        </a>
+
+        <div class="testObject hoverontouch">
             <div class="info pink"><img src="img/01Info.png"></div>
-            <div class="cover pink"><img src="img/01Cover.png"></div>
-        </div></a>
+            <div class="cover pink "><img src="img/01Cover.png"></div>
+        </div>
 
 
 <!--         <a href="https://www.example.com" class="testObjectLink"><div class="testObject"></div></a>
@@ -77,14 +87,6 @@
 
         <script type="text/javascript">
             var hoverOnTouch = new HoverOnTouch();
-        </script>
-
-        <script language="JavaScript">
-        window.onpopstate = function(event) {
-            var all_objects = document.getElementsByClassName('hoverontouch');
-            for (var i = 0; i < all_objects.length; i++) {
-            all_objects[i].classList.remove("hoverAndTouch");
-        };
         </script>
 
   

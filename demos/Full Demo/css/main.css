@@ -63,32 +63,8 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.cover {
-    position: absolute;
-    width: inherit;
-    height: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.info {
-    position: absolute;
-    width: inherit;
-    height: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
 .desktop {
     visibility: hidden;
-}
-
-.pink {
-    background-color: #fc97ff;
 }
 
 .blue {
@@ -204,15 +180,7 @@ img {
     transition: all 0.5s ease-in-out;
 }
 
-/*.isdesktop .testObject:hover, {
-    background-color: red;
-}*/
-
-/*.textObject:hover {
-    background-color: blue;
-}*/
-
-.testObject.hoverAndTouch {
+.hoverontouch--aktiv .testObject {
     background-color: blue;
 }
 
@@ -221,22 +189,44 @@ img {
     cursor: pointer;
 }
 
-.link.hoverAndTouch {
+.hoverontouch--aktiv .link {
     text-decoration: underline;
 }
 
-/*.testObject.hoverontouch{
-    background-color: blue;
-}*/
+.info {
+    position: absolute;
+    width: 100vw;
+    height: inherit;
+    overflow: hidden;
+}
+
+.cover {
+    position: absolute;
+    width: 100vw;
+    height: inherit;
+}
+
+.pink {
+    background-color: #fc97ff;
+}
+
+.hoverontouch--aktiv .cover {
+    opacity: 0;
+}
+
 
 
 /*add via javascript*/
+/*the a breaks links that don't have the calss*/
 .hoverontouch {
     /*iphone tap highlight*/
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     /*Iphone magnifiing glass*/
     -webkit-user-select: none;
+    /*Menu on link longpress*/
+    -webkit-touch-callout: none;
 }
+
 
 
 /* ==========================================================================
