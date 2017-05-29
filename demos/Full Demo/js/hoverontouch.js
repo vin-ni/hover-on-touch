@@ -46,6 +46,10 @@ HoverOnTouch.prototype.init = function () {
     //set variables
     this.pressTimer;
     this.longpress = false;
+    this.scrollStartX = 0;
+    this.scrollEndX = 0;
+    this.scrollStartY = 0;
+    this.scrollEndY = 0;
 };
 
 HoverOnTouch.prototype.rewriteLinks = function () {
