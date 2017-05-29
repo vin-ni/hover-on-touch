@@ -167,10 +167,6 @@ img {
     background-color: red;
 }*/
 
-.testObject:hover{
-    background-color: green;
-}
-
 .coverTest {
     position: absolute;
     width: inherit;
@@ -208,6 +204,39 @@ img {
     transition: all 0.5s ease-in-out;
 }
 
+/*.isdesktop .testObject:hover, {
+    background-color: red;
+}*/
+
+/*.textObject:hover {
+    background-color: blue;
+}*/
+
+.testObject.hoverAndTouch {
+    background-color: blue;
+}
+
+.link {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.link.hoverAndTouch {
+    text-decoration: underline;
+}
+
+/*.testObject.hoverontouch{
+    background-color: blue;
+}*/
+
+
+/*add via javascript*/
+.hoverontouch {
+    /*iphone tap highlight*/
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    /*Iphone magnifiing glass*/
+    -webkit-user-select: none;
+}
 
 
 /* ==========================================================================

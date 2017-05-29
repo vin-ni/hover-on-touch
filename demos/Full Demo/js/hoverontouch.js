@@ -11,16 +11,24 @@
 
 
 //#To Do
-// [ ] Only run on Mobile
-// [ ] Add Loop
+// [x] Only run on Mobile
+// [x] Add Loop
 // [ ] block native  behaviour
-// [ ] add hover on touch
+// [x] add hover on touch
+// [ ] prohibit link if not moving after x seconds
 // [ ] restart gifs / videos
-// [ ] 
+// [ ] remove all classes on document ready
 // [ ] text popup
 // [ ] 
 
+// window.onunload = function(){
+//     var all_objects = document.getElementsByClassName('hoverontouch');
+//         for (var i = 0; i < all_objects.length; i++) {
+//         all_objects[i].classList.remove("hoverAndTouch");
 
+//     }
+
+// };
 
 function HoverOnTouch() {
     this.init();
@@ -29,7 +37,44 @@ function HoverOnTouch() {
 
 HoverOnTouch.prototype.init = function () {
 
-    var all_objects = document.getElementsByClassName('testObject');
+
+    var all_objects = document.getElementsByClassName('hoverontouch');
+
+    //remove hover states
+    for (var i = 0; i < all_objects.length; i++) {
+        all_objects[i].classList.remove("hoverAndTouch");
+
+    }
+
+    for (var i = 0; i < all_objects.length; i++) {
+    var object = all_objects[i];
+    
+    object.addEventListener('touchstart', function(event) { 
+        this.className += " hoverAndTouch";
+    });
+    object.addEventListener('touchend', function(event) { 
+        this.classList.remove("hoverAndTouch");
+    });
+
+    object.addEventListener('mouseover', function(event) { 
+        this.className += " hoverAndTouch";
+    });
+    object.addEventListener('mouseout', function(event) { 
+        this.classList.remove("hoverAndTouch");
+    });
+}
+
+
+    
+
+
+
+    
+    //touchstart
+    //touchend
+    //mouseover
+    //mouseup
+
 
     //Add Hammer Listener to every object
     // for (var i = 0; i < all_objects.length; ++i) {
@@ -96,28 +141,33 @@ HoverOnTouch.prototype.init = function () {
 };
 
 HoverOnTouch.prototype.removeIphoneDT = function () {
-    // remove Iphone Double Tap Effect
+
+    // remove Iphone Double Tap Effect -- only runs on mobile
     // by rcmachado - https://gist.github.com/rcmachado/7303143
-    var touch = 'ontouchstart' in document.documentElement
-        || (navigator.MaxTouchPoints > 0)
-        || (navigator.msMaxTouchPoints > 0);
+    // var touch = 'ontouchstart' in document.documentElement
+    //     || (navigator.MaxTouchPoints > 0)
+    //     || (navigator.msMaxTouchPoints > 0);
 
-    if (touch) { // remove all :hover stylesheets
-    try { // prevent exception on browsers not supporting DOM styleSheets     properly
-        for (var si in document.styleSheets) {
-            var styleSheet = document.styleSheets[si];
-            if (!styleSheet.rules) continue;
+    // if (touch) { // remove all :hover stylesheets
+    // try { // prevent exception on browsers not supporting DOM styleSheets     properly
+    //     for (var si in document.styleSheets) {
+    //         var styleSheet = document.styleSheets[si];
+    //         if (!styleSheet.rules) continue;
 
-            for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
-                if (!styleSheet.rules[ri].selectorText) continue;
+    //         for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
+    //             if (!styleSheet.rules[ri].selectorText) continue;
 
-                if (styleSheet.rules[ri].selectorText.match(':hover')) {
-                    styleSheet.deleteRule(ri);
-                }
-            }
-        }
-    } catch (ex) {}
-    } 
+    //             if (styleSheet.rules[ri].selectorText.match(':hover')) {
+    //                 styleSheet.deleteRule(ri);
+    //             }
+    //         }
+    //     }
+    // } catch (ex) {}
+    // } 
+
+
+    // !!!!!!! maybe because of -webkit-tap-highlight-color: rgba(0,0,0,0);
+    // document.addEventListener("touchstart", function(){}, true);
 };
 
                                         // ===== Device Stuff ==== //
