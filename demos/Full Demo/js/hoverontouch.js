@@ -70,19 +70,15 @@ HoverOnTouch.prototype.touchEvents = function () {
     for (var i = 0; i < this.all_objects.length; i++) {
         var object = this.all_objects[i];
 
-       
-
         object.addEventListener('mouseenter', function(event) { 
-            // this.className += " hoverontouch--aktiv";
+            this.className += " hoverontouch--aktiv";
             console.log("mouseEnter");
         });
 
          object.addEventListener('mouseover', function(event) { 
-            // this.className += " hoverontouch--aktiv";
-            
-                console.log("mouseOver:");
-                console.log(event);
-            
+            this.className += " hoverontouch--aktiv";
+            console.log("mouseOver:");
+            console.log(event);
         });
 
         object.addEventListener('mouseout', function(event) { 
@@ -114,7 +110,8 @@ HoverOnTouch.prototype.touchEvents = function () {
             event.stopPropagation();
         });
 
-        object.addEventListener('touchend', function(event) { 
+        object.addEventListener('touchend', function(event) {
+            
             console.log("touchend");
             this.classList.remove("hoverontouch--aktiv");
             clearTimeout(self.pressTimer);
@@ -129,9 +126,11 @@ HoverOnTouch.prototype.touchEvents = function () {
                console.log("this was longpress");
                self.longpress = false;
             };
+            event.preventDefault();
+        });
 
-            event.stopPropagation();
-
+        object.addEventListener('touchmove', function(event) { 
+            console.log("moving");
         });
     }
 };
