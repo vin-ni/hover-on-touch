@@ -117,11 +117,13 @@ HoverOnTouch.prototype.touchEvents = function () {
             clearTimeout(self.pressTimer);
 
             if (!self.longpress) {
-                //this is a click, so go to the data-ling
-                console.log(this.getAttribute('data-link'));
-                var location = this.getAttribute('data-link');
-                window.location.href=location;
-                console.log("run redirect");  
+                //this is a click, so go to the data-ling, but only if data link exists
+                if (this.getAttribute('data-link')) {
+                    console.log(this.getAttribute('data-link'));
+                    var location = this.getAttribute('data-link');
+                    window.location.href=location;
+                    console.log("run redirect"); 
+                };
             } else {
                console.log("this was longpress");
                self.longpress = false;

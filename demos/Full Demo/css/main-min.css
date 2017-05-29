@@ -26,12 +26,6 @@ a {
   color: black;
   font-weight: 600; }
 
-a:visited {
-  font-weight: normal; }
-
-a:hover {
-  text-decoration: underline; }
-
 ::selection {
   background: #FF3333;
   /* WebKit/Blink Browsers */ }
@@ -148,6 +142,7 @@ img {
 .testObject {
   width: 100vw;
   height: 200px;
+  display: block;
   margin-bottom: 20px;
   background-color: yellow;
   -webkit-transition: all 0.5s ease-in-out;
@@ -157,11 +152,22 @@ img {
   background-color: blue; }
 
 .link {
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 250px;
+  height: auto;
   font-size: 1.2rem;
-  cursor: pointer; }
+  cursor: pointer;
+  padding: 3px 5px 5px 5px;
+  border-radius: 7px;
+  background-color: #fff;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out; }
 
 .hoverontouch--aktiv .link {
-  text-decoration: underline; }
+  text-decoration: underline;
+  background-color: #c4c4c4; }
 
 .info {
   position: absolute;
