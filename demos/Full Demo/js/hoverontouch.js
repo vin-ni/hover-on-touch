@@ -2,7 +2,7 @@
 
 //  hoverontouch.js
 //  An alternative hover function on mobile devices.
-//  Version 2.X XX/11/16
+//  Version 2.1XX/11/16
 //
 //  Created by Vinzenz Aubry on 19/04/16. 
 //  Copyright 2016 Vinzenz Aubry. All rights reserved.
@@ -11,7 +11,15 @@
 
 
 //#To Do
-//# Only run on Mobile
+// [ ] Only run on Mobile
+// [ ] Add Loop
+// [ ] block native  behaviour
+// [ ] add hover on touch
+// [ ] restart gifs / videos
+// [ ] 
+// [ ] text popup
+// [ ] 
+
 
 
 function HoverOnTouch() {
@@ -24,67 +32,67 @@ HoverOnTouch.prototype.init = function () {
     var all_objects = document.getElementsByClassName('testObject');
 
     //Add Hammer Listener to every object
-    for (var i = 0; i < all_objects.length; ++i) {
-        var item = all_objects[i];
+    // for (var i = 0; i < all_objects.length; ++i) {
+    //     var item = all_objects[i];
 
-        var mc = new Hammer.Manager(item);
-        mc.add( new Hammer.Tap({
-            time: 250,
-        }));
+    //     var mc = new Hammer.Manager(item);
+    //     mc.add( new Hammer.Tap({
+    //         time: 250,
+    //     }));
 
-        mc.add(new Hammer.Press({
-            event: 'press',
-            pointer: 1,
-            threshold: 1000,
-            time: 1,
-        }));
+    //     mc.add(new Hammer.Press({
+    //         event: 'press',
+    //         pointer: 1,
+    //         threshold: 1000,
+    //         time: 1,
+    //     }));
 
 
-        //Function triggered on tap and press
-        mc.on('press tap', function(event) {
-            event.preventDefault();
+    //     //Function triggered on tap and press
+    //     mc.on('press tap', function(event) {
+    //         event.preventDefault();
 
-            // console.log(this);
-            // console.log(event);
+    //         // console.log(this);
+    //         // console.log(event);
 
-            var elem = event.target;
-            elem.classList.add("hoverOnTouch");
+    //         var elem = event.target;
+    //         elem.classList.add("hoverOnTouch");
 
-            // var elem = getClosest(event.target, ".object");
-            // var elemInfo = elem.querySelector('.info');
-            // var elemCover = elem.querySelector('.cover');
+    //         // var elem = getClosest(event.target, ".object");
+    //         // var elemInfo = elem.querySelector('.info');
+    //         // var elemCover = elem.querySelector('.cover');
 
-            // elemCover.style.opacity = '0';
+    //         // elemCover.style.opacity = '0';
 
-            // Checking if Image is a Gif. If "Yes" restart the Gif from the beginning
-            // var images = elemInfo.querySelectorAll('img');
-            // restartImagesIfGif (images);
+    //         // Checking if Image is a Gif. If "Yes" restart the Gif from the beginning
+    //         // var images = elemInfo.querySelectorAll('img');
+    //         // restartImagesIfGif (images);
 
-            if (event.type === "tap") {
-                // elemCover.style.opacity = '1';
-                // var link = event.target.closest('a');
-                // Get the link when tapped
-                var link = event.target.closest('a').getAttribute("href");
-                window.location.href = link;
-            }         
-        });
+    //         if (event.type === "tap") {
+    //             // elemCover.style.opacity = '1';
+    //             // var link = event.target.closest('a');
+    //             // Get the link when tapped
+    //             var link = event.target.closest('a').getAttribute("href");
+    //             window.location.href = link;
+    //         }         
+    //     });
 
-        mc.on('pressup', function(event) {
-            event.preventDefault();
-            // var elem = getClosest(event.target, ".object");
-            // var elemCover = elem.querySelector('.cover');
-            console.log("alert");
+    //     mc.on('pressup', function(event) {
+    //         event.preventDefault();
+    //         // var elem = getClosest(event.target, ".object");
+    //         // var elemCover = elem.querySelector('.cover');
+    //         console.log("alert");
 
-            var elem = event.target;
-            elem.classList.remove("hoverOnTouch");
+    //         var elem = event.target;
+    //         elem.classList.remove("hoverOnTouch");
 
-            // elemCover.style.opacity = '1';
+    //         // elemCover.style.opacity = '1';
 
-            // unhideAll might be unnecesary on deploy
-            // unhideAll ();
-            // event.preventDefault();
-        });
-    }
+    //         // unhideAll might be unnecesary on deploy
+    //         // unhideAll ();
+    //         // event.preventDefault();
+    //     });
+    // }
 };
 
                                         // ===== Device Stuff ==== //
@@ -191,3 +199,11 @@ function findElementByClass (parent, klassName) {
             }        
         }
 }
+
+
+
+
+
+
+
+//  jshint ignore: end

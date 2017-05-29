@@ -1,0 +1,211 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden; }
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 0.8em;
+  line-height: 1.6;
+  margin-top: 0; }
+
+h1 {
+  text-align: center;
+  width: 100vw;
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+h2 {
+  font-size: 2em;
+  text-align: center; }
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-weight: 600; }
+
+a:visited {
+  font-weight: normal; }
+
+a:hover {
+  text-decoration: underline; }
+
+::selection {
+  background: #FF3333;
+  /* WebKit/Blink Browsers */ }
+
+::-moz-selection {
+  background: #FF3333;
+  /* Gecko Browsers */ }
+
+.wrapper {
+  position: relative;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row; }
+
+.object {
+  width: 95vw;
+  height: 200px;
+  margin-bottom: 20px; }
+
+.cover {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; }
+
+.info {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; }
+
+.desktop {
+  visibility: hidden; }
+
+.pink {
+  background-color: #fc97ff; }
+
+.blue {
+  background-color: #2e1e89; }
+
+.lightBlue {
+  background-color: #00e1ff; }
+
+.yellow {
+  background-color: #ffff9f; }
+
+.grey {
+  background-color: #dddddd; }
+
+img {
+  width: inherit;
+  height: auto; }
+
+.desktop {
+  visibility: visible;
+  background-color: lightgrey;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.desktop p {
+  font-size: 1.5em;
+  width: 55vw;
+  margin-bottom: 15vh; }
+
+.description {
+  text-align: left;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw; }
+
+.wrapper2 {
+  position: relative;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  display: none; }
+
+#linkTriggered {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  display: none; }
+
+#linkTriggered p {
+  margin-top: 40vh;
+  font-size: 1.4em; }
+
+/*.testObject.hoverOnTouch {
+    background-color: red;
+}*/
+.testObject:hover {
+  background-color: green; }
+
+.coverTest {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 1; }
+
+.coverTest:hover, .coverTest.hoverOnTouch {
+  opacity: 0; }
+
+.infoTest {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 1; }
+
+/*==============New CSS==============*/
+.testObject {
+  width: 100vw;
+  height: 200px;
+  margin-bottom: 20px;
+  background-color: yellow;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; }
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+@media screen and (max-device-width: 1024px) {
+  .desktop {
+    visibility: hidden; } }
+
+/*==========  Mobile First Method  ==========*/
+/* Custom, iPhone Retina */
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 480px) {
+  .object {
+    max-width: 350px;
+    height: 220px; }
+  .cover {
+    max-width: 350px; }
+  .info {
+    max-width: 350px; }
+  img {
+    max-width: 350px; } }
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 767px) {
+  .wrapper2 {
+    display: flex; }
+  .description {
+    text-align: center; }
+  .object {
+    width: 350px; } }
+
+/* Medium Devices, Desktops */
+/* Large Devices, Wide Screens */

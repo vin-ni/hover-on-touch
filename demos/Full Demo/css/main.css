@@ -163,20 +163,9 @@ img {
    font-size: 1.4em;
 }
 
-
-/*New CSS*/
-.testObject {
-    width: 100vw;
-    height: 200px;
-    margin-bottom: 20px;
-    background-color: yellow;
-    -webkit-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-}
-
-.testObject.hoverOnTouch {
+/*.testObject.hoverOnTouch {
     background-color: red;
-}
+}*/
 
 .testObject:hover{
     background-color: green;
@@ -206,6 +195,17 @@ img {
     justify-content: center;
     overflow: hidden;
     opacity: 1;
+}
+
+
+/*==============New CSS==============*/
+.testObject {
+    width: 100vw;
+    height: 200px;
+    margin-bottom: 20px;
+    background-color: yellow;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 
