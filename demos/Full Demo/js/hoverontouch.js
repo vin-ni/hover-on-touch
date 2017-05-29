@@ -13,11 +13,12 @@
 //#To Do
 // [x] Only run on Mobile
 // [x] Add Loop
-// [ ] block native  behaviour
+// [x] block native  behaviour ios
+// [ ] block native  behaviour android
 // [x] add hover on touch
-// [ ] prohibit link if not moving after x seconds
+// [x] prohibit link if not moving after x seconds
 // [ ] don't jump to link if scrolling fast and clicking shortly
-// [ ] reset classes when coming back
+// [x] reset classes when coming back (not necessary anymore)
 // [ ] restart gifs / videos
 // [ ] remove all classes on document ready
 // [ ] text popup on links?
@@ -75,11 +76,11 @@ HoverOnTouch.prototype.touchEvents = function () {
             console.log("mouseEnter");
         });
 
-         object.addEventListener('mouseover', function(event) { 
-            this.className += " hoverontouch--aktiv";
-            console.log("mouseOver:");
-            console.log(event);
-        });
+        //  object.addEventListener('mouseover', function(event) { 
+        //     this.className += " hoverontouch--aktiv";
+        //     console.log("mouseOver:");
+        //     console.log(event);
+        // });
 
         object.addEventListener('mouseout', function(event) { 
             this.classList.remove("hoverontouch--aktiv");
@@ -88,30 +89,15 @@ HoverOnTouch.prototype.touchEvents = function () {
         });
         
         object.addEventListener('touchstart', function(event) { 
-            this.className += " hoverontouch--aktiv";
-
-
-            // return false;
             console.log("touchstart");
+            this.className += " hoverontouch--aktiv";
             self.pressTimer = window.setTimeout(function() { 
-                console.log("timer end");
-                self.longpress = true;
-                // stopPropagation();
-                // return false;
-            //     var e = e || event;
-            //       var from = findParent('a',e.target || e.srcElement);
-            //       if (from){
-            //          console.log(from);
-            //          // from.setAttribute("href", "#/");
-            //     }
-                
+                console.log("timer end, longpress detected");
+                self.longpress = true;             
             },250);
-
-            event.stopPropagation();
         });
 
         object.addEventListener('touchend', function(event) {
-            
             console.log("touchend");
             this.classList.remove("hoverontouch--aktiv");
             clearTimeout(self.pressTimer);

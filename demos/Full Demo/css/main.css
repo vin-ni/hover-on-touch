@@ -61,10 +61,6 @@ a {
     visibility: hidden;
 }
 
-.blue {
-    background-color: #2e1e89;
-}
-
 .lightBlue {
    background-color: #00e1ff;
 }
@@ -167,7 +163,7 @@ img {
 /*==============New CSS==============*/
 .testObject {
     width: 100vw;
-    height: 200px;
+    height: 225px;
     display: block;
     margin-bottom: 20px;
     background-color: yellow;
@@ -217,6 +213,10 @@ img {
 
 .pink {
     background-color: #fc97ff;
+}
+
+.blue {
+    background-color: #2e1e89;
 }
 
 .hoverontouch--aktiv .cover {
