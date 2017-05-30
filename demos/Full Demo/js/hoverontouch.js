@@ -171,15 +171,14 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
         //this is a click, so go to the data-link, but only if data link exists and not more scrolling as 10px
         // calculate Distance
         var XOriginal = this.scrollStartX;
-        var XEnd = e.pageX;
+        var XEnd = event.pageX;
         var distanceX = Math.abs(XOriginal - XEnd);
 
-        var YEnd = e.pageY;
+        var YEnd = event.pageY;
         var YOriginal = this.scrollStartY;
         var distanceY = Math.abs(YOriginal - YEnd);
 
         if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5 && this.multipleTouch === false) {
-            alert(this.multipleTouch);
             console.log("clicked");
             var location = object.getAttribute('data-link');
             window.location.href=location;
