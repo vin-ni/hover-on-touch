@@ -27,9 +27,8 @@
 // [x] Bind event to right click
 // [x] fix right click somehow?
 // [x] inline css inject
-// [ ] 2 fingers preview not blocking -> add a second timer or check if 2 fingers
 
-
+// [ ] 2 fingers preview not blocking -> add a second timer or check if 2 fingers?
 // [ ] Android no redraw on scroll
 
 
@@ -148,6 +147,7 @@ HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
 
 HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
     console.log("touchstart");
+    console.log(e.touches);
     if (e.touches.length > 1) {
 
         console.log("more than 1 touch");
