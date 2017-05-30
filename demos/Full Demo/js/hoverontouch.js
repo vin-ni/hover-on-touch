@@ -20,10 +20,12 @@
 // [x] don't jump to link if scrolling fast and clicking shortly
 // [x] reset classes when coming back (not necessary anymore)
 // [x] restart gifs
-// [ ] add css via javascript
+// [x] add css via javascript
 // [x] destroyer function
-// [ ] reparse links function
-// [ ] 2 fingers preview not blocking
+// [x] reparse links function
+// [ ] 2 fingers preview not blocking -> add a second timer or check if 2 fingers
+// [ ] Mouse Wheel open in new Tab
+// [ ] Bind event to right click
 
 function HoverOnTouch() {
     this.init();
@@ -46,7 +48,8 @@ HoverOnTouch.prototype.init = function () {
 HoverOnTouch.prototype.addCss = function () {
     var css = document.createElement("style");
     css.type = "text/css";
-    css.innerHTML = "strong { color: red }";
+    //adding css for iphone ui elements. Only applies to hover on touch elements: iphone tap highlight / Iphone magnifiing glass / Menu on link longpress
+    css.innerHTML = ".hoverontouch {-webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-user-select: none; -webkit-touch-callout: none; }";
     document.body.appendChild(css);
 };
 
@@ -74,6 +77,8 @@ HoverOnTouch.prototype.touchEvents = function () {
     //define event listeners
     this.handlerMouseenterHoverontouch = this.mouseenterHoverontouch.bind(this);
     this.handlerMouseeoutHoverontouch = this.mouseeoutHoverontouch.bind(this);
+    this.handlerMouseupHoverontouch = this.mouseupHoverontouch.bind(this);
+
     this.handlerTouchstartHoverontouch = this.touchstartHoverontouch.bind(this);
     this.handlerTouchendHoverontouch = this.touchendHoverontouch.bind(this);
 
@@ -97,6 +102,7 @@ HoverOnTouch.prototype.touchEvents = function () {
         //add event listeners
         object.addEventListener('mouseenter', this.handlerMouseenterHoverontouch);
         object.addEventListener('mouseout', this.handlerMouseeoutHoverontouch);
+        object.addEventListener('mouseup', this.handlerMouseupHoverontouch);
         object.addEventListener('touchstart', this.handlerTouchstartHoverontouch);
         object.addEventListener('touchend', this.handlerTouchendHoverontouch);
 
@@ -124,6 +130,23 @@ HoverOnTouch.prototype.mouseeoutHoverontouch = function (e) {
     var object = this.getClosest(e.target, '.hoverontouch');
     object.classList.remove("hoverontouch--aktiv");
     // console.log("mouseOut");
+};
+
+HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
+    //go up dom and remove class
+    var object = this.getClosest(e.target, '.hoverontouch');
+    if (object.getAttribute('data-link')) {
+        console.log("clicked");
+        var location = object.getAttribute('data-link');
+        if (e.which === 1) {
+            window.location.href=location;
+        } else if (e.which >= 2) {
+            //opens new tab on wheel + opens new tab on right click //can't open contextmenu unfortunately because a has no link
+            var win = window.open(location, '_blank');
+            // win.focus();
+        };
+        console.log("run redirect"); 
+    };
 };
 
 
@@ -157,17 +180,18 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
         //this is a click, so go to the data-link, but only if data link exists and not more scrolling as 10px
         // calculate Distance
         var XOriginal = this.scrollStartX;
-        var XEnd = event.pageX;
+        var XEnd = e.pageX;
         var distanceX = Math.abs(XOriginal - XEnd);
 
-        var YEnd = event.pageY;
+        var YEnd = e.pageY;
         var YOriginal = this.scrollStartY;
         var distanceY = Math.abs(YOriginal - YEnd);
 
         // console.log(distanceY, distanceX);
 
-        if (this.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5) {
-            var location = this.getAttribute('data-link');
+        if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5) {
+            console.log("clicked");
+            var location = object.getAttribute('data-link');
             window.location.href=location;
             console.log("run redirect"); 
         };
@@ -179,7 +203,12 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
 };
 
 HoverOnTouch.prototype.destroy = function () {
-    //event listeners in functions umschreiben 
+    //remove listeners
+    this.removeAllListeners();
+    console.log("removed everything. Set Hoverontouch variable to null if you like");
+};
+
+HoverOnTouch.prototype.removeAllListeners = function () {
     for (var i = 0; i < this.all_objects.length; i++) {
         var object = this.all_objects[i];
         object.removeEventListener('mouseenter', this.handlerMouseenterHoverontouch);
@@ -187,15 +216,17 @@ HoverOnTouch.prototype.destroy = function () {
         object.removeEventListener('touchstart', this.handlerTouchstartHoverontouch);
         object.removeEventListener('touchend', this.handlerTouchendHoverontouch);
     }
-    console.log("removed everything. Set Hoverontouch variable to null if you like");
 };
 
-HoverOnTouch.prototype.reparseLinks = function () {
-
-};
-
-HoverOnTouch.prototype.reparseGifs = function () {
-
+HoverOnTouch.prototype.reInitHoverOnTouch = function () {
+    //remove listeners
+    this.removeAllListeners();
+    //regather all elements
+    this.all_objects = document.getElementsByClassName('hoverontouch');
+    //rewrite Links
+    this.rewriteLinks();
+    //add back touchevents
+    this.touchEvents();
 };
 
 
