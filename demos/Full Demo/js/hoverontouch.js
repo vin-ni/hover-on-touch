@@ -62,24 +62,26 @@ HoverOnTouch.prototype.rewriteLinks = function () {
 
 HoverOnTouch.prototype.touchEvents = function () {
     var self = this;
+
+    //define event listeners
     this.handlerMouseenterHoverontouch = this.mouseenterHoverontouch.bind(this);
-
     this.handlerMouseeoutHoverontouch = this.mouseeoutHoverontouch.bind(this);
-
     this.handlerTouchstartHoverontouch = this.touchstartHoverontouch.bind(this);
-
     this.handlerTouchendHoverontouch = this.touchendHoverontouch.bind(this);
 
 
     for (var i = 0; i < this.all_objects.length; i++) {
         var object = this.all_objects[i];
+
+        //loop through elements and look for gifs
+        var allImages = object.getElementsByTagName('img');
+
         object.img = "toto";
+
+        //add event listeners
         object.addEventListener('mouseenter', this.handlerMouseenterHoverontouch);
-
         object.addEventListener('mouseout', this.handlerMouseeoutHoverontouch);
-        
         object.addEventListener('touchstart', this.handlerTouchstartHoverontouch);
-
         object.addEventListener('touchend', this.handlerTouchendHoverontouch);
 
         // object.addEventListener('touchmove', function(event) { 
@@ -117,7 +119,6 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
     this.scrollStartY = event.pageY;
 
     //go down dom and restart all gifs
-    // var images = e.target.getElementsByTagName('img');
     // console.log(e.target.img);
     // console.log(e);
     // continue after
@@ -169,10 +170,7 @@ HoverOnTouch.prototype.destroy = function () {
         object.removeEventListener('touchstart', this.handlerTouchstartHoverontouch);
         object.removeEventListener('touchend', this.handlerTouchendHoverontouch);
     }
-    console.log("removed all listeners");
-    console.log(this);
-    //how to delete the whole variable to destroy?
-    // delete window.HoverOnTouchvariable;
+    console.log("removed everything. Set Hoverontouch variable to null if you like");
 };
 
 HoverOnTouch.prototype.reparseLinks = function () {
@@ -226,22 +224,22 @@ window.oncontextmenu = function(event) {
 
 
                                         // ===== Helper Functions ===== //
-function resetGif(obj) {
+HoverOnTouch.prototype.resetGif = function (obj) {
     var img = obj;
     var imageUrl = img.src;
     img.src = "#";
     img.src = imageUrl;
-}
+};
 
 // Loop Through Array of Images
-function restartImagesIfGif (imageArray) {
+HoverOnTouch.prototype.restartImagesIfGif = function (imageArray) {
     for (var i = imageArray.length - 1; i >= 0; i--) {
         var fileExtension = imageArray[i].src.split('.').pop();
         if (fileExtension === "gif") {
-           resetGif(imageArray[i]);
+           this.resetGif(imageArray[i]);
         }
     }
-}
+};
 
 
 
