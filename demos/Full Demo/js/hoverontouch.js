@@ -27,6 +27,8 @@
 // [x] Bind event to right click
 // [ ] 2 fingers preview not blocking -> add a second timer or check if 2 fingers
 // [ ] fix right click somehow?
+// [ ] inline css inject
+// [ ] Android no redraw on scroll
 
 
 function HoverOnTouch() {
@@ -52,7 +54,7 @@ HoverOnTouch.prototype.addCss = function () {
     var css = document.createElement("style");
     css.type = "text/css";
     //adding css for iphone ui elements. Only applies to hover on touch elements: iphone tap highlight / Iphone magnifiing glass / Menu on link longpress
-    css.innerHTML = ".hoverontouch {-webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-user-select: none; -webkit-touch-callout: none; }";
+    css.innerHTML = ".hoverontouch {-webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-user-select: none; -webkit-touch-callout: none; } .hoverontouch img {pointer-events: none;}";
     document.body.appendChild(css);
 };
 
@@ -139,6 +141,7 @@ HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
 HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
     console.log("touchstart");
     if (e.touches.length > 1) {
+
         console.log("more than 1 touch");
         this.multipleTouch = true;
     }
@@ -149,9 +152,9 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
 
     object.className += " hoverontouch--aktiv";
 
-    //get entry coordinates for scroll block
-    this.scrollStartX = event.pageX;
-    this.scrollStartY = event.pageY;
+    //get entry coordinates for scroll block (needs to go into changedTouches because of the handler)
+    this.scrollStartX = e.changedTouches[0].pageX;
+    this.scrollStartY = e.changedTouches[0].pageY;
 
     var self = this;
     console.log("timer runs");
@@ -171,14 +174,15 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
         //this is a click, so go to the data-link, but only if data link exists and not more scrolling as 10px
         // calculate Distance
         var XOriginal = this.scrollStartX;
-        var XEnd = event.pageX;
+        var XEnd = e.changedTouches[0].pageX;
         var distanceX = Math.abs(XOriginal - XEnd);
 
-        var YEnd = event.pageY;
+        var YEnd = e.changedTouches[0].pageY;
         var YOriginal = this.scrollStartY;
         var distanceY = Math.abs(YOriginal - YEnd);
 
-        if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5 && this.multipleTouch === false) {
+        // && this.multipleTouch === false
+        if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5) {
             console.log("clicked");
             var location = object.getAttribute('data-link');
             window.location.href=location;
@@ -224,11 +228,11 @@ HoverOnTouch.prototype.reInitHoverOnTouch = function () {
 
 //REWRITE THIS TO ONLY BE ON those elements
 //Block the "Tapohold" Context Menu on Android
-window.oncontextmenu = function(event) {
-     event.preventDefault();
-     event.stopPropagation();
-     return false;
-};
+// window.oncontextmenu = function(event) {
+//      event.preventDefault();
+//      event.stopPropagation();
+//      return false;
+// };
 
                                         // ===== Helper Functions ===== //
 HoverOnTouch.prototype.filterGifs = function (imageArray) {
