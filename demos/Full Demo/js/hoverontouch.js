@@ -25,9 +25,11 @@
 // [x] reparse links function
 // [x] Mouse Wheel open in new Tab
 // [x] Bind event to right click
+// [x] fix right click somehow?
+// [x] inline css inject
 // [ ] 2 fingers preview not blocking -> add a second timer or check if 2 fingers
-// [ ] fix right click somehow?
-// [ ] inline css inject
+
+
 // [ ] Android no redraw on scroll
 
 
@@ -62,11 +64,6 @@ HoverOnTouch.prototype.addCss = function () {
         }
      }
 
-    // old css injection
-    // var css = document.createElement("style");
-    // css.type = "text/css";
-    // css.innerHTML = ".hoverontouch {-webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-user-select: none; -webkit-touch-callout: none; } .hoverontouch img {pointer-events: none;}";
-    // document.body.appendChild(css);
 };
 
 HoverOnTouch.prototype.rewriteLinks = function () {
