@@ -51,11 +51,22 @@ HoverOnTouch.prototype.init = function () {
 };
 
 HoverOnTouch.prototype.addCss = function () {
-    var css = document.createElement("style");
-    css.type = "text/css";
-    //adding css for iphone ui elements. Only applies to hover on touch elements: iphone tap highlight / Iphone magnifiing glass / Menu on link longpress
-    css.innerHTML = ".hoverontouch {-webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-user-select: none; -webkit-touch-callout: none; } .hoverontouch img {pointer-events: none;}";
-    document.body.appendChild(css);
+     for (var i = 0; i < this.all_objects.length; i++) {
+        var object = this.all_objects[i];
+        //adding css for iphone ui elements. Only applies to hover on touch elements: iphone tap highlight / Iphone magnifiing glass / Menu on link longpress
+        object.style.cssText = "-webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-user-select: none; -webkit-touch-callout: none; "; 
+        //removing pointerevents on images for android
+        var imagesArray = object.getElementsByTagName('img');
+        for (var k = 0; k < imagesArray.length; k++) {
+            imagesArray[k].style.cssText = "pointer-events: none;"; 
+        }
+     }
+
+    // old css injection
+    // var css = document.createElement("style");
+    // css.type = "text/css";
+    // css.innerHTML = ".hoverontouch {-webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-user-select: none; -webkit-touch-callout: none; } .hoverontouch img {pointer-events: none;}";
+    // document.body.appendChild(css);
 };
 
 HoverOnTouch.prototype.rewriteLinks = function () {
@@ -222,6 +233,8 @@ HoverOnTouch.prototype.reInitHoverOnTouch = function () {
     //add back touchevents
     this.touchEvents();
 };
+
+
 
 
                                         // ===== Device Stuff ==== //
