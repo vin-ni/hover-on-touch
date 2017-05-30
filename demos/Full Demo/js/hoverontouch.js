@@ -17,21 +17,13 @@
 // [ ] block native  behaviour android
 // [x] add hover on touch
 // [x] prohibit link if not moving after x seconds
-// [ ] don't jump to link if scrolling fast and clicking shortly
+// [x] don't jump to link if scrolling fast and clicking shortly
 // [x] reset classes when coming back (not necessary anymore)
 // [ ] restart gifs / videos
-// [ ] remove all classes on document ready
-// [ ] text popup on links?
 // [ ] add css via javascript
-
-// window.onunload = function(){
-//     var all_objects = document.getElementsByClassName('hoverontouch');
-//         for (var i = 0; i < all_objects.length; i++) {
-//         all_objects[i].classList.remove("hoverAndTouch");
-
-//     }
-
-// };
+// [x] destroyer function
+// [ ] reparse links function
+// [ ] 2 fingers preview not blocking
 
 function HoverOnTouch() {
     this.init();
@@ -47,9 +39,7 @@ HoverOnTouch.prototype.init = function () {
     this.pressTimer;
     this.longpress = false;
     this.scrollStartX = 0;
-    this.scrollEndX = 0;
     this.scrollStartY = 0;
-    this.scrollEndY = 0;
 };
 
 HoverOnTouch.prototype.rewriteLinks = function () {
@@ -72,91 +62,148 @@ HoverOnTouch.prototype.rewriteLinks = function () {
 
 HoverOnTouch.prototype.touchEvents = function () {
     var self = this;
+    this.handlerMouseenterHoverontouch = this.mouseenterHoverontouch.bind(this);
+
+    this.handlerMouseeoutHoverontouch = this.mouseeoutHoverontouch.bind(this);
+
+    this.handlerTouchstartHoverontouch = this.touchstartHoverontouch.bind(this);
+
+    this.handlerTouchendHoverontouch = this.touchendHoverontouch.bind(this);
+
+
     for (var i = 0; i < this.all_objects.length; i++) {
         var object = this.all_objects[i];
+        object.img = "toto";
+        object.addEventListener('mouseenter', this.handlerMouseenterHoverontouch);
 
-        object.addEventListener('mouseenter', function(event) { 
-            this.className += " hoverontouch--aktiv";
-            console.log("mouseEnter");
-        });
-
-        //  object.addEventListener('mouseover', function(event) { 
-        //     this.className += " hoverontouch--aktiv";
-        //     console.log("mouseOver:");
-        //     console.log(event);
-        // });
-
-        object.addEventListener('mouseout', function(event) { 
-            this.classList.remove("hoverontouch--aktiv");
-            console.log("mouseOut:");
-            console.log(event);
-        });
+        object.addEventListener('mouseout', this.handlerMouseeoutHoverontouch);
         
-        object.addEventListener('touchstart', function(event) { 
-            console.log("touchstart");
-            this.className += " hoverontouch--aktiv";
-            self.pressTimer = window.setTimeout(function() { 
-                console.log("timer end, longpress detected");
-                self.longpress = true;             
-            },250);
-        });
+        object.addEventListener('touchstart', this.handlerTouchstartHoverontouch);
 
-        object.addEventListener('touchend', function(event) {
-            console.log("touchend");
-            this.classList.remove("hoverontouch--aktiv");
-            clearTimeout(self.pressTimer);
+        object.addEventListener('touchend', this.handlerTouchendHoverontouch);
 
-            if (!self.longpress) {
-                //this is a click, so go to the data-ling, but only if data link exists
-                if (this.getAttribute('data-link')) {
-                    console.log(this.getAttribute('data-link'));
-                    var location = this.getAttribute('data-link');
-                    window.location.href=location;
-                    console.log("run redirect"); 
-                };
-            } else {
-               console.log("this was longpress");
-               self.longpress = false;
-            };
-            event.preventDefault();
-        });
-
-        object.addEventListener('touchmove', function(event) { 
-            console.log("moving");
-        });
+        // object.addEventListener('touchmove', function(event) { 
+        //     console.log(event.layerY);
+        //     console.log(event.pageY);
+        // });
     }
+};
+
+HoverOnTouch.prototype.mouseenterHoverontouch = function (e) {
+    e.target.className += " hoverontouch--aktiv";
+    console.log(e);
+    console.log(this);
+    // console.log("mouseEnter");
+};
+
+HoverOnTouch.prototype.mouseeoutHoverontouch = function (e) {
+    e.target.classList.remove("hoverontouch--aktiv");
+    // console.log("mouseOut:");
+    // console.log(event);
+};
+
+HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
+    console.log("touchstart");
+    e.target.className += " hoverontouch--aktiv";
+
+    //get entry coordinates
+    this.scrollStartX = event.pageX;
+    this.scrollStartY = event.pageY;
+
+    //go down dom and restart all gifs
+    // var images = e.target.getElementsByTagName('img');
+    // console.log(e.target.img);
+    // console.log(e);
+    // continue after
+
+    var self = this;
+    this.pressTimer = window.setTimeout(function() { 
+        console.log("timer end, longpress detected");
+        self.longpress = true;             
+    },250);
+};
+
+HoverOnTouch.prototype.touchendHoverontouch = function (e) {
+    console.log("touchend");
+    e.target.classList.remove("hoverontouch--aktiv");
+    clearTimeout(this.pressTimer);
+
+    if (!this.longpress) {
+        //this is a click, so go to the data-link, but only if data link exists and not more scrolling as 10px
+        // calculate Distance
+        var XOriginal = this.scrollStartX;
+        var XEnd = event.pageX;
+        var distanceX = Math.abs(XOriginal - XEnd);
+
+        var YEnd = event.pageY;
+        var YOriginal = this.scrollStartY;
+        var distanceY = Math.abs(YOriginal - YEnd);
+
+        // console.log(distanceY, distanceX);
+
+        if (this.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5) {
+            var location = this.getAttribute('data-link');
+            window.location.href=location;
+            console.log("run redirect"); 
+        };
+    } else {
+        console.log("this was longpress");
+        this.longpress = false;
+    };
+    event.preventDefault();
+};
+
+HoverOnTouch.prototype.destroy = function () {
+    //event listeners in functions umschreiben 
+    for (var i = 0; i < this.all_objects.length; i++) {
+        var object = this.all_objects[i];
+        object.removeEventListener('mouseenter', this.mouseenterHoverontouch);
+        object.removeEventListener('mouseout', this.mouseeoutHoverontouch);
+        object.removeEventListener('touchstart', this.touchstartHoverontouch);
+        object.removeEventListener('touchend', this.touchendHoverontouch);
+    }
+    console.log("removed all listeners");
+    console.log(this);
+    //how to delete the whole variable to destroy?
+    // delete window.HoverOnTouchvariable;
+};
+
+HoverOnTouch.prototype.reparseLinks = function () {
+
+};
+
+HoverOnTouch.prototype.reparseGifs = function () {
+
 };
 
 // ================= NEW HELPER =================
 
 //find first parent with tagName [tagname] from: https://stackoverflow.com/a/12552017
-function findParent(tagname,el){
-  if ((el.nodeName || el.tagName).toLowerCase()===tagname.toLowerCase()){
-    return el;
-  }
-  while (el = el.parentNode){
-    if ((el.nodeName || el.tagName).toLowerCase()===tagname.toLowerCase()){
-      return el;
-    }
-  }
-  return null;
-}
+// function findParent(tagname,el){
+//   if ((el.nodeName || el.tagName).toLowerCase()===tagname.toLowerCase()){
+//     return el;
+//   }
+//   while (el = el.parentNode){
+//     if ((el.nodeName || el.tagName).toLowerCase()===tagname.toLowerCase()){
+//       return el;
+//     }
+//   }
+//   return null;
+// }
 
-function callback(e) {
-    var e = window.e || e;
+// function callback(e) {
+//     var e = window.e || e;
 
-    if (e.target.tagName !== 'A')
-        return;
+//     if (e.target.tagName !== 'A')
+//         return;
 
-    console.log(e);
-}
+//     console.log(e);
+// }
 
-if (document.addEventListener)
-    document.addEventListener('touchstart', callback, false);
-else
-    document.attachEvent('touchstart', callback);
-
-
+// if (document.addEventListener)
+//     document.addEventListener('touchstart', callback, false);
+// else
+//     document.attachEvent('touchstart', callback);
 
 
 
@@ -189,38 +236,10 @@ else
 
 
 
-HoverOnTouch.prototype.removeIphoneDT = function () {
-
-    // remove Iphone Double Tap Effect -- only runs on mobile
-    // by rcmachado - https://gist.github.com/rcmachado/7303143
-    // var touch = 'ontouchstart' in document.documentElement
-    //     || (navigator.MaxTouchPoints > 0)
-    //     || (navigator.msMaxTouchPoints > 0);
-
-    // if (touch) { // remove all :hover stylesheets
-    // try { // prevent exception on browsers not supporting DOM styleSheets     properly
-    //     for (var si in document.styleSheets) {
-    //         var styleSheet = document.styleSheets[si];
-    //         if (!styleSheet.rules) continue;
-
-    //         for (var ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
-    //             if (!styleSheet.rules[ri].selectorText) continue;
-
-    //             if (styleSheet.rules[ri].selectorText.match(':hover')) {
-    //                 styleSheet.deleteRule(ri);
-    //             }
-    //         }
-    //     }
-    // } catch (ex) {}
-    // } 
-
-
-    // !!!!!!! maybe because of -webkit-tap-highlight-color: rgba(0,0,0,0);
-    // document.addEventListener("touchstart", function(){}, true);
-};
 
                                         // ===== Device Stuff ==== //
 
+//REWRITE THIS TO ONLY BE ON thoes elements
 //Block the "Tapohold" Context Menu on Android
 window.oncontextmenu = function(event) {
      event.preventDefault();
@@ -293,36 +312,6 @@ var getClosest = function (elem, selector) {
     return false;
 
 };
-
-
-// Old functions not used anymore
-function hasClass( elem, klass ) {
-     return (" " + elem.className + " " ).indexOf( " "+klass+" " ) > -1;
-}
-
-function unhideAll () {
-    for (var i = 0; i < all_objects.length; ++i) {
-    var item = all_objects[i]; 
-
-        for (var j = 0; j < item.childNodes.length; j++) {
-        if (hasClass(item.childNodes[j], "cover") === true) {
-            // alert(item.childNodes[j].className);
-          item.childNodes[j].style.visibility = 'visible';
-            }        
-        }
-    }
-}
-
-
-function findElementByClass (parent, klassName) {
-    for (var i = 0; i < parent.childNodes.length; i++) {
-        if (hasClass(parent.childNodes[i], klassName) === true) {
-            alert(parent.childNodes[i].className);
-          // parent.childNodes[i].style.visibility = 'visible';
-          break;
-            }        
-        }
-}
 
 
 
