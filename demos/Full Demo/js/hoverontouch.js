@@ -24,8 +24,8 @@
 // [x] destroyer function
 // [x] reparse links function
 // [ ] 2 fingers preview not blocking -> add a second timer or check if 2 fingers
-// [ ] Mouse Wheel open in new Tab
-// [ ] Bind event to right click
+// [x] Mouse Wheel open in new Tab
+// [x] Bind event to right click
 
 function HoverOnTouch() {
     this.init();
@@ -90,15 +90,6 @@ HoverOnTouch.prototype.touchEvents = function () {
         object.allImages = object.getElementsByTagName('img');
         object.gifs = this.filterGifs(object.allImages);
 
-        // //add each prealoded image to object
-        // var self = object;
-        //     for (var k = 0; k < object.gifs.length; k++) {
-        //         var nameOfGif = "gif" + k;
-        //         self.nameOfGif = new Image();
-        //         self.nameOfGif.src = self.gifs[k].src;
-        //         console.log(object.nameOfGif);
-        //     }
-
         //add event listeners
         object.addEventListener('mouseenter', this.handlerMouseenterHoverontouch);
         object.addEventListener('mouseout', this.handlerMouseeoutHoverontouch);
@@ -106,10 +97,6 @@ HoverOnTouch.prototype.touchEvents = function () {
         object.addEventListener('touchstart', this.handlerTouchstartHoverontouch);
         object.addEventListener('touchend', this.handlerTouchendHoverontouch);
 
-        // object.addEventListener('touchmove', function(event) { 
-        //     console.log(event.layerY);
-        //     console.log(event.pageY);
-        // });
     }
 };
 
@@ -120,16 +107,12 @@ HoverOnTouch.prototype.mouseenterHoverontouch = function (e) {
     this.restartImagesIfGif(object.allImages);
 
     object.className += " hoverontouch--aktiv";
-    // console.log(e);
-    // console.log(this);
-    // console.log("mouseEnter");
 };
 
 HoverOnTouch.prototype.mouseeoutHoverontouch = function (e) {
     //go up dom and remove class
     var object = this.getClosest(e.target, '.hoverontouch');
     object.classList.remove("hoverontouch--aktiv");
-    // console.log("mouseOut");
 };
 
 HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
@@ -186,8 +169,6 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
         var YEnd = e.pageY;
         var YOriginal = this.scrollStartY;
         var distanceY = Math.abs(YOriginal - YEnd);
-
-        // console.log(distanceY, distanceX);
 
         if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5) {
             console.log("clicked");
