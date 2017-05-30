@@ -90,21 +90,27 @@ HoverOnTouch.prototype.touchEvents = function () {
 };
 
 HoverOnTouch.prototype.mouseenterHoverontouch = function (e) {
-    e.target.className += " hoverontouch--aktiv";
-    console.log(e);
-    console.log(this);
+    //go up dom and add class
+    var object = this.getClosest(e.target, '.hoverontouch');
+    object.className += " hoverontouch--aktiv";
+    // console.log(e);
+    // console.log(this);
     // console.log("mouseEnter");
 };
 
 HoverOnTouch.prototype.mouseeoutHoverontouch = function (e) {
-    e.target.classList.remove("hoverontouch--aktiv");
+    //go up dom and remove class
+    var object = this.getClosest(e.target, '.hoverontouch');
+    object.classList.remove("hoverontouch--aktiv");
     // console.log("mouseOut:");
     // console.log(event);
 };
 
 HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
     console.log("touchstart");
-    e.target.className += " hoverontouch--aktiv";
+    //go up dom and add class
+    var object = this.getClosest(e.target, '.hoverontouch');
+    object.className += " hoverontouch--aktiv";
 
     //get entry coordinates
     this.scrollStartX = event.pageX;
@@ -125,7 +131,8 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
 
 HoverOnTouch.prototype.touchendHoverontouch = function (e) {
     console.log("touchend");
-    e.target.classList.remove("hoverontouch--aktiv");
+    var object = this.getClosest(e.target, '.hoverontouch');
+    object.classList.remove("hoverontouch--aktiv");
     clearTimeout(this.pressTimer);
 
     if (!this.longpress) {
@@ -157,10 +164,10 @@ HoverOnTouch.prototype.destroy = function () {
     //event listeners in functions umschreiben 
     for (var i = 0; i < this.all_objects.length; i++) {
         var object = this.all_objects[i];
-        object.removeEventListener('mouseenter', this.mouseenterHoverontouch);
-        object.removeEventListener('mouseout', this.mouseeoutHoverontouch);
-        object.removeEventListener('touchstart', this.touchstartHoverontouch);
-        object.removeEventListener('touchend', this.touchendHoverontouch);
+        object.removeEventListener('mouseenter', this.handlerMouseenterHoverontouch);
+        object.removeEventListener('mouseout', this.handlerMouseeoutHoverontouch);
+        object.removeEventListener('touchstart', this.handlerTouchstartHoverontouch);
+        object.removeEventListener('touchend', this.handlerTouchendHoverontouch);
     }
     console.log("removed all listeners");
     console.log(this);
@@ -177,7 +184,6 @@ HoverOnTouch.prototype.reparseGifs = function () {
 };
 
 // ================= NEW HELPER =================
-
 
 
 
