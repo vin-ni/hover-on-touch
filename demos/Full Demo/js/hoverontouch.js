@@ -45,6 +45,7 @@ HoverOnTouch.prototype.init = function () {
     this.longpress = false;
     this.scrollStartX = 0;
     this.scrollStartY = 0;
+    this.multipleTouch = false;
 };
 
 HoverOnTouch.prototype.addCss = function () {
@@ -137,6 +138,10 @@ HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
 
 HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
     console.log("touchstart");
+    if (e.touches.length > 1) {
+        console.log("more than 1 touch");
+        this.multipleTouch = true;
+    }
     //go up dom and add class
     var object = this.getClosest(e.target, '.hoverontouch');
     //restart gifs
@@ -173,12 +178,14 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
         var YOriginal = this.scrollStartY;
         var distanceY = Math.abs(YOriginal - YEnd);
 
-        if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5) {
+        if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5 && this.multipleTouch === false) {
+            alert(this.multipleTouch);
             console.log("clicked");
             var location = object.getAttribute('data-link');
-            // window.location.href=location;
-            console.log("run redirect"); 
+            window.location.href=location;
         };
+        //put back to false if false
+        this.multipleTouch = false;
     } else {
         console.log("this was longpress");
         this.longpress = false;
