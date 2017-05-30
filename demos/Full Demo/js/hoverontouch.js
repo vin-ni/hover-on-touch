@@ -178,35 +178,6 @@ HoverOnTouch.prototype.reparseGifs = function () {
 
 // ================= NEW HELPER =================
 
-//find first parent with tagName [tagname] from: https://stackoverflow.com/a/12552017
-// function findParent(tagname,el){
-//   if ((el.nodeName || el.tagName).toLowerCase()===tagname.toLowerCase()){
-//     return el;
-//   }
-//   while (el = el.parentNode){
-//     if ((el.nodeName || el.tagName).toLowerCase()===tagname.toLowerCase()){
-//       return el;
-//     }
-//   }
-//   return null;
-// }
-
-// function callback(e) {
-//     var e = window.e || e;
-
-//     if (e.target.tagName !== 'A')
-//         return;
-
-//     console.log(e);
-// }
-
-// if (document.addEventListener)
-//     document.addEventListener('touchstart', callback, false);
-// else
-//     document.attachEvent('touchstart', callback);
-
-
-
 
 
 
@@ -239,7 +210,7 @@ HoverOnTouch.prototype.reparseGifs = function () {
 
                                         // ===== Device Stuff ==== //
 
-//REWRITE THIS TO ONLY BE ON thoes elements
+//REWRITE THIS TO ONLY BE ON those elements
 //Block the "Tapohold" Context Menu on Android
 window.oncontextmenu = function(event) {
      event.preventDefault();
@@ -274,8 +245,7 @@ function restartImagesIfGif (imageArray) {
  * @param  {String} selector The class, id, data attribute, or tag to look for
  * @return {Node} Null if no match
  */
-var getClosest = function (elem, selector) {
-
+HoverOnTouch.prototype.getClosest = function (elem, selector) {
     var firstChar = selector.charAt(0);
 
     // Get closest match
@@ -310,7 +280,6 @@ var getClosest = function (elem, selector) {
     }
 
     return false;
-
 };
 
 
