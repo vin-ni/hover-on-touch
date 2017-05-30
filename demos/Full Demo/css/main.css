@@ -183,6 +183,7 @@ img {
     height: auto;
     font-size: 1.2rem;
     cursor: pointer;
+    text-decoration: underline;
 
     padding: 3px 5px 5px 5px;
     border-radius: 7px;
@@ -193,9 +194,8 @@ img {
 }
 
 .hoverontouch--aktiv .link {
-    text-decoration: underline;
     background-color: #c4c4c4;
-    
+    padding: 3px 15px 5px 15px;
 }
 
 .info {
@@ -242,9 +242,6 @@ img {
    Media Queries
    ========================================================================== */
 @media screen and (max-device-width: 1024px){
-  .desktop {
-    visibility: hidden;
-  }
 }
 
 

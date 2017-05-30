@@ -156,6 +156,7 @@ img {
   height: auto;
   font-size: 1.2rem;
   cursor: pointer;
+  text-decoration: underline;
   padding: 3px 5px 5px 5px;
   border-radius: 7px;
   background-color: #fff;
@@ -163,8 +164,8 @@ img {
   transition: all 0.2s ease-in-out; }
 
 .hoverontouch--aktiv .link {
-  text-decoration: underline;
-  background-color: #c4c4c4; }
+  background-color: #c4c4c4;
+  padding: 3px 15px 5px 15px; }
 
 .info {
   position: absolute;
@@ -199,10 +200,6 @@ img {
 /* ==========================================================================
    Media Queries
    ========================================================================== */
-@media screen and (max-device-width: 1024px) {
-  .desktop {
-    visibility: hidden; } }
-
 /*==========  Mobile First Method  ==========*/
 /* Custom, iPhone Retina */
 /* Extra Small Devices, Phones */
