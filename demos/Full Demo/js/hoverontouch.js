@@ -14,12 +14,12 @@
 // [x] Only run on Mobile
 // [x] Add Loop
 // [x] block native  behaviour ios
-// [ ] block native  behaviour android
+// [x] block native  behaviour android
 // [x] add hover on touch
 // [x] prohibit link if not moving after x seconds
 // [x] don't jump to link if scrolling fast and clicking shortly
 // [x] reset classes when coming back (not necessary anymore)
-// [ ] restart gifs / videos
+// [x] restart gifs
 // [ ] add css via javascript
 // [x] destroyer function
 // [ ] reparse links function
@@ -27,6 +27,7 @@
 
 function HoverOnTouch() {
     this.init();
+    this.addCss();
     this.rewriteLinks();
     this.touchEvents();
 }
@@ -40,6 +41,13 @@ HoverOnTouch.prototype.init = function () {
     this.longpress = false;
     this.scrollStartX = 0;
     this.scrollStartY = 0;
+};
+
+HoverOnTouch.prototype.addCss = function () {
+    var css = document.createElement("style");
+    css.type = "text/css";
+    css.innerHTML = "strong { color: red }";
+    document.body.appendChild(css);
 };
 
 HoverOnTouch.prototype.rewriteLinks = function () {
@@ -74,9 +82,17 @@ HoverOnTouch.prototype.touchEvents = function () {
         var object = this.all_objects[i];
 
         //loop through elements and look for gifs
-        var allImages = object.getElementsByTagName('img');
+        object.allImages = object.getElementsByTagName('img');
+        object.gifs = this.filterGifs(object.allImages);
 
-        object.img = "toto";
+        // //add each prealoded image to object
+        // var self = object;
+        //     for (var k = 0; k < object.gifs.length; k++) {
+        //         var nameOfGif = "gif" + k;
+        //         self.nameOfGif = new Image();
+        //         self.nameOfGif.src = self.gifs[k].src;
+        //         console.log(object.nameOfGif);
+        //     }
 
         //add event listeners
         object.addEventListener('mouseenter', this.handlerMouseenterHoverontouch);
@@ -94,6 +110,9 @@ HoverOnTouch.prototype.touchEvents = function () {
 HoverOnTouch.prototype.mouseenterHoverontouch = function (e) {
     //go up dom and add class
     var object = this.getClosest(e.target, '.hoverontouch');
+    //restart images if gif
+    this.restartImagesIfGif(object.allImages);
+
     object.className += " hoverontouch--aktiv";
     // console.log(e);
     // console.log(this);
@@ -104,24 +123,22 @@ HoverOnTouch.prototype.mouseeoutHoverontouch = function (e) {
     //go up dom and remove class
     var object = this.getClosest(e.target, '.hoverontouch');
     object.classList.remove("hoverontouch--aktiv");
-    // console.log("mouseOut:");
-    // console.log(event);
+    // console.log("mouseOut");
 };
+
 
 HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
     console.log("touchstart");
     //go up dom and add class
     var object = this.getClosest(e.target, '.hoverontouch');
+    //restart gifs
+    this.restartGifs(object.gifs);
+
     object.className += " hoverontouch--aktiv";
 
-    //get entry coordinates
+    //get entry coordinates for scroll block
     this.scrollStartX = event.pageX;
     this.scrollStartY = event.pageY;
-
-    //go down dom and restart all gifs
-    // console.log(e.target.img);
-    // console.log(e);
-    // continue after
 
     var self = this;
     this.pressTimer = window.setTimeout(function() { 
@@ -181,36 +198,6 @@ HoverOnTouch.prototype.reparseGifs = function () {
 
 };
 
-// ================= NEW HELPER =================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                                         // ===== Device Stuff ==== //
 
@@ -222,26 +209,26 @@ window.oncontextmenu = function(event) {
      return false;
 };
 
-
                                         // ===== Helper Functions ===== //
-HoverOnTouch.prototype.resetGif = function (obj) {
-    var img = obj;
-    var imageUrl = img.src;
-    img.src = "#";
-    img.src = imageUrl;
-};
-
-// Loop Through Array of Images
-HoverOnTouch.prototype.restartImagesIfGif = function (imageArray) {
+HoverOnTouch.prototype.filterGifs = function (imageArray) {
+    var allGifs = [];
     for (var i = imageArray.length - 1; i >= 0; i--) {
         var fileExtension = imageArray[i].src.split('.').pop();
         if (fileExtension === "gif") {
-           this.resetGif(imageArray[i]);
+            allGifs.push(imageArray[i]);
         }
     }
+    return allGifs;
 };
 
-
+HoverOnTouch.prototype.restartGifs = function (imageArray) {
+    for (var i = imageArray.length - 1; i >= 0; i--) { //only restarts on server (local: reloads)
+        var img = imageArray[i];
+        var imageUrl = img.src;
+        img.src = "#/";
+        img.src = imageUrl;
+    }
+};
 
 /**
  * Get closest DOM element up the tree that contains a class, ID, or data attribute
@@ -285,6 +272,34 @@ HoverOnTouch.prototype.getClosest = function (elem, selector) {
 
     return false;
 };
+
+
+
+
+
+
+
+
+
+
+// Old Stuff
+HoverOnTouch.prototype.resetGif = function (obj) {
+    var img = obj;
+    var imageUrl = img.src;
+    img.src = "#/";
+    img.src = imageUrl;
+};
+
+HoverOnTouch.prototype.restartImagesIfGif = function (imageArray) {
+    for (var i = imageArray.length - 1; i >= 0; i--) {
+        var fileExtension = imageArray[i].src.split('.').pop();
+        if (fileExtension === "gif") {
+           this.resetGif(imageArray[i]);
+        }
+    }
+};
+
+
 
 
 
