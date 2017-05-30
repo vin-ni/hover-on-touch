@@ -2,10 +2,10 @@
 
 //  hoverontouch.js
 //  An alternative hover function on mobile devices.
-//  Version 2.1XX/11/16
+//  Version 2.1 30/04/17
 //
 //  Created by Vinzenz Aubry on 19/04/16. 
-//  Copyright 2016 Vinzenz Aubry. All rights reserved.
+//  Copyright 2017 Vinzenz Aubry. All rights reserved.
 //  MIT Licensed
 //
 
@@ -23,9 +23,11 @@
 // [x] add css via javascript
 // [x] destroyer function
 // [x] reparse links function
-// [ ] 2 fingers preview not blocking -> add a second timer or check if 2 fingers
 // [x] Mouse Wheel open in new Tab
 // [x] Bind event to right click
+// [ ] 2 fingers preview not blocking -> add a second timer or check if 2 fingers
+// [ ] fix right click somehow?
+
 
 function HoverOnTouch() {
     this.init();
@@ -55,7 +57,6 @@ HoverOnTouch.prototype.addCss = function () {
 
 HoverOnTouch.prototype.rewriteLinks = function () {
     //rewrite links to data-attributes
-    console.log("rewriteLinks");
     for (var i = 0; i < this.all_objects.length; i++) {
         object = this.all_objects[i];
         if(object.tagName === 'A') {
@@ -118,6 +119,7 @@ HoverOnTouch.prototype.mouseeoutHoverontouch = function (e) {
 HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
     //go up dom and remove class
     var object = this.getClosest(e.target, '.hoverontouch');
+    object.classList.remove("hoverontouch--aktiv");
     if (object.getAttribute('data-link')) {
         console.log("clicked");
         var location = object.getAttribute('data-link');
@@ -147,6 +149,7 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
     this.scrollStartY = event.pageY;
 
     var self = this;
+    console.log("timer runs");
     this.pressTimer = window.setTimeout(function() { 
         console.log("timer end, longpress detected");
         self.longpress = true;             
@@ -173,7 +176,7 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
         if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5) {
             console.log("clicked");
             var location = object.getAttribute('data-link');
-            window.location.href=location;
+            // window.location.href=location;
             console.log("run redirect"); 
         };
     } else {
