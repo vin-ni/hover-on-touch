@@ -1,7 +1,7 @@
 //
 //  hoverontouch.js
 //  An alternative hover function on mobile devices.
-//  Version 1.1 20/04/16
+//  Version 2.0 18/09/16
 //
 //  Created by Vinzenz Aubry on 19/04/16. 
 //  Copyright 2016 Vinzenz Aubry. All rights reserved.
@@ -15,6 +15,11 @@ var all_objects = document.getElementsByClassName('object');
 //Add Hammer Listener to every object
 for (var i = 0; i < all_objects.length; ++i) {
     var item = all_objects[i];
+
+    //bind new pressup for android
+    item.addEventListener("touchend", function(){
+        pressupFunction(event);
+    });
 
     var mc = new Hammer.Manager(item);
     mc.add( new Hammer.Tap({
@@ -54,16 +59,17 @@ mc.on('press tap', function(event) {
     });
 
 mc.on('pressup', function(event) {
+    pressupFunction(event);
+    // unhideAll ();
     // event.preventDefault();
+});
+}
+
+function pressupFunction (e) {
     var elem = getClosest(event.target, ".object");
     var elemCover = elem.querySelector('.cover');
 
     elemCover.style.opacity = '1';
-
-    // unhideAll might be unnecesary on deploy
-    // unhideAll ();
-    // event.preventDefault();
-});
 }
 
 
