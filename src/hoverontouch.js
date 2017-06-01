@@ -16,6 +16,11 @@ var all_objects = document.getElementsByClassName('object');
 for (var i = 0; i < all_objects.length; ++i) {
     var item = all_objects[i];
 
+    //bind new pressup for android
+    item.addEventListener("touchend", function(){
+        pressupFunction(event);
+    });
+
     var mc = new Hammer.Manager(item);
     mc.add( new Hammer.Tap({
         time: 250,
@@ -54,16 +59,17 @@ mc.on('press tap', function(event) {
     });
 
 mc.on('pressup', function(event) {
+    pressupFunction(event);
+    // unhideAll ();
     // event.preventDefault();
+});
+}
+
+function pressupFunction (e) {
     var elem = getClosest(event.target, ".object");
     var elemCover = elem.querySelector('.cover');
 
     elemCover.style.opacity = '1';
-
-    // unhideAll might be unnecesary on deploy
-    // unhideAll ();
-    // event.preventDefault();
-});
 }
 
 
