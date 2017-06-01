@@ -7,7 +7,7 @@
 		"uuidString": "BC99AE75-4556-4A2B-87B9-44F35F4B3221"
 		}
 	],
-"creatorBuild": "25479",
+"creatorBuild": "25704",
 "files": {
 	"\/css\/main-min.css": {
 		"aP": 0,
@@ -52,26 +52,32 @@
 	"\/img\/01Cover.png": {
 		"ft": 32768,
 		"iS": 34044,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/img\/01Cover.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/img\/01Info.png": {
 		"ft": 32768,
 		"iS": 49853,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/img\/01Info.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/img\/02Cover.png": {
 		"ft": 32768,
 		"iS": 27010,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/img\/02Cover.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/img\/02Info.gif": {
 		"ft": 4194304,
@@ -84,26 +90,32 @@
 	"\/img\/03Cover.png": {
 		"ft": 32768,
 		"iS": 32740,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/img\/03Cover.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/img\/03Info.png": {
 		"ft": 32768,
 		"iS": 35682,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/img\/03Info.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/img\/04Cover.png": {
 		"ft": 32768,
 		"iS": 62722,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/img\/04Cover.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/img\/04Info.gif": {
 		"ft": 4194304,
@@ -116,26 +128,32 @@
 	"\/img\/04Info.png": {
 		"ft": 32768,
 		"iS": 24670,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/img\/04Info.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/img\/05Cover.png": {
 		"ft": 32768,
 		"iS": 36452,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/img\/05Cover.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/img\/05Info.png": {
 		"ft": 32768,
 		"iS": 36213,
+		"l": 1,
 		"oA": 0,
 		"oAP": "\/img\/05Info.png",
 		"oF": 0,
-		"opt": 0
+		"opt": 0,
+		"q": 100
 		},
 	"\/index.html": {
 		"ft": 8192,
@@ -845,6 +863,10 @@
 			"active": 0,
 			"optionString": ""
 			},
+		"no-await-in-loop": {
+			"active": 0,
+			"optionString": ""
+			},
 		"no-bitwise": {
 			"active": 0,
 			"optionString": "{'allow': ['~'], 'int32Hint': true}"
@@ -863,6 +885,10 @@
 			},
 		"no-class-assign": {
 			"active": 1,
+			"optionString": ""
+			},
+		"no-compare-neg-zero": {
+			"active": 0,
 			"optionString": ""
 			},
 		"no-cond-assign": {
@@ -1062,6 +1088,10 @@
 			"optionString": "{'grouping': false, 'allowCall': false }"
 			},
 		"no-mixed-spaces-and-tabs": {
+			"active": 0,
+			"optionString": ""
+			},
+		"no-multi-assign": {
 			"active": 0,
 			"optionString": ""
 			},
@@ -1341,6 +1371,10 @@
 			"active": 0,
 			"optionString": ""
 			},
+		"nonblock-statement-body-position": {
+			"active": 0,
+			"optionString": "'beside'"
+			},
 		"object-curly-newline": {
 			"active": 0,
 			"optionString": "{'ObjectExpression': {'multiline': true}, 'ObjectPattern': {'multiline': true}}"
@@ -1385,9 +1419,17 @@
 			"active": 0,
 			"optionString": "{'destructuring': 'any', 'ignoreReadBeforeAssign': false}"
 			},
+		"prefer-destructuring": {
+			"active": 0,
+			"optionString": "{'array': true, 'object': true}, {'enforceForRenamedProperties': false}"
+			},
 		"prefer-numeric-literals": {
 			"active": 0,
 			"optionString": ""
+			},
+		"prefer-promise-reject-errors": {
+			"active": 0,
+			"optionString": "{'allowEmptyReject': false}"
 			},
 		"prefer-rest-params": {
 			"active": 0,
@@ -1482,6 +1524,10 @@
 			"optionString": ""
 			},
 		"template-curly-spacing": {
+			"active": 0,
+			"optionString": "'never'"
+			},
+		"template-tag-spacing": {
 			"active": 0,
 			"optionString": "'never'"
 			},
@@ -1928,7 +1974,8 @@
 		"autoOutputPathRelativePath": "",
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
-		"autoOutputPathStyle": 0
+		"autoOutputPathStyle": 0,
+		"quality": 100
 		},
 	"languageDefaultsJS": {
 		"autoOutputAction": 0,
@@ -2021,7 +2068,9 @@
 		"autoOutputPathRelativePath": "",
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
-		"autoOutputPathStyle": 0
+		"autoOutputPathStyle": 0,
+		"enableLossy": 1,
+		"quality": 100
 		},
 	"languageDefaultsPUG": {
 		"autoOutputAction": 0,

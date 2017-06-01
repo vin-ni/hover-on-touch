@@ -45,6 +45,7 @@ HoverOnTouch.prototype.init = function () {
 
     //set variables
     this.pressTimer;
+    this.pressTimerRunning = false;
     this.longpress = false;
     this.scrollStartX = 0;
     this.scrollStartY = 0;
@@ -146,7 +147,7 @@ HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
 
 
 HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
-    console.log("touchstart");
+    // console.log("touchstart");
     console.log(e.touches);
     if (e.touches.length > 1) {
 
@@ -165,11 +166,17 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
     this.scrollStartY = e.changedTouches[0].pageY;
 
     var self = this;
-    console.log("timer runs");
-    this.pressTimer = window.setTimeout(function() { 
-        console.log("timer end, longpress detected");
-        self.longpress = true;             
-    },250);
+
+    if (this.pressTimerRunning === false) { //only start timer if not running already
+        console.log("timer runs");
+        self.pressTimerRunning = true;
+        this.pressTimer = window.setTimeout(function() { 
+            console.log("timer end, longpress detected");
+            self.longpress = true;
+            //timer stopped running
+            self.pressTimerRunning = false; 
+        },250);
+    };
 };
 
 HoverOnTouch.prototype.touchendHoverontouch = function (e) {
@@ -180,6 +187,8 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
 
     if (!this.longpress) {
         //this is a click, so go to the data-link, but only if data link exists and not more scrolling as 10px
+
+
         // calculate Distance
         var XOriginal = this.scrollStartX;
         var XEnd = e.changedTouches[0].pageX;
@@ -189,11 +198,12 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
         var YOriginal = this.scrollStartY;
         var distanceY = Math.abs(YOriginal - YEnd);
 
-        // && this.multipleTouch === false
-        if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5) {
+        // 
+        if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5 && this.multipleTouch === false) {
+            alert();
             console.log("clicked");
-            var location = object.getAttribute('data-link');
-            window.location.href=location;
+            // var location = object.getAttribute('data-link');
+            // window.location.href=location;
         };
         //put back to false if false
         this.multipleTouch = false;
