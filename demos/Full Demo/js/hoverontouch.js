@@ -45,7 +45,6 @@ HoverOnTouch.prototype.init = function () {
 
     //set variables
     this.pressTimer;
-    this.pressTimerRunning = false;
     this.longpress = false;
     this.scrollStartX = 0;
     this.scrollStartY = 0;
@@ -166,17 +165,11 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
     this.scrollStartY = e.changedTouches[0].pageY;
 
     var self = this;
-
-    if (this.pressTimerRunning === false) { //only start timer if not running already
-        console.log("timer runs");
-        self.pressTimerRunning = true;
-        this.pressTimer = window.setTimeout(function() { 
-            console.log("timer end, longpress detected");
-            self.longpress = true;
-            //timer stopped running
-            self.pressTimerRunning = false; 
-        },250);
-    };
+    console.log("timer runs");
+    this.pressTimer = window.setTimeout(function() { 
+        console.log("timer end, longpress detected");
+        self.longpress = true;             
+    },250);
 };
 
 HoverOnTouch.prototype.touchendHoverontouch = function (e) {
@@ -187,8 +180,6 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
 
     if (!this.longpress) {
         //this is a click, so go to the data-link, but only if data link exists and not more scrolling as 10px
-
-
         // calculate Distance
         var XOriginal = this.scrollStartX;
         var XEnd = e.changedTouches[0].pageX;
