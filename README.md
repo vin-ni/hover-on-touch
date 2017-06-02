@@ -11,7 +11,9 @@ Some thoughts on what the plugin can be used for can be found on my [blog](http:
 <script src="your/path/hoverontouch.js"></script>
 ```
 
-When you touch an element, the cover is hidden and the secondary information is shown. If you release under 250ms the touch event is interpreted as a click and a redirection to the given link is triggered. Otherwise, if you hold longer, the event is interpreted as a »Taphold« and the cover is shown again on release. The user can read the secondary information while scrolling the page for example.
+When you touch an element, the »**hoverontouch--active**« class is applied and triggers the effect applied via css. For example it can hide an element and show some secondary information, initiate a link hover or just trigger any kind of css animation. If you release under 250ms, the touch event is interpreted as a click and a redirection to the given link is triggered (if there is one provided). Otherwise, if you hold longer, the event is interpreted as a »Taphold« and the old status is shown again on release. 
+
+This brings an additional possibility for the user to interact with the content of a website. The user can read the secondary information while scrolling the page for example. It further makes it feel more "alive" and "applike". 
 
 ![Preview of the Plugin on a Portfolio](/media/readme.gif?raw=true "Preview")
 ![Preview with nice colors and animation](/media/fun.gif?raw=true "Preview")
