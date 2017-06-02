@@ -15,6 +15,12 @@ Some thoughts on what the plugin can be used for can be found on my [blog](http:
 ```javascript
 <script src="your/path/hoverontouch.js"></script>
 ```
+and add the following to your html
+```javascript
+<script type="text/javascript">
+    var HoverOnTouch = new HoverOnTouch();
+</script>
+```
 
 ## Description
 When you touch an element, the »**hoverontouch--active**« class is applied and triggers the effect defined in your css. For example it can hide an element and show some secondary information, initiate a link hover or just trigger any kind of css animation. If you release under 250ms, the touch event is interpreted as a click and a redirection to the given link is triggered (if there is one provided). Otherwise, if you hold longer, the event is interpreted as a »Taphold« and the old status is shown again on release. 
@@ -99,13 +105,22 @@ These are some points I think are necessary to make this approach work ux wise:
 
 [Link] (http://vinzenzaubry.com/journal/hover-on-touch/) to my blogpost with additional thoughts.
 
-## Features
+## Features & Functions
+
+```javascript
+// Destroy the plugin and remove all event listeners:
+hoverontouch.destroy();
+
+// ReInit the plugin to parse new Links if they are added dynamically or new content is pushed to the pase (for example pagination)
+hoverontouch.reInitHoverOnTouch();
+```
 
 - Put any html elements together
 - Works while scrolling, so users can see details while scrolling through the page
 - Gifs restart on display
 - For looping animations save the gifs as »looping«, for normal animations save them as »playing once«
 - The script works on mobile, on desktop and devices that support mouse and touch events.
+
 
 
 If anyone wants to contribute, just fork the project or write me at hi@vinzenzaubry.com :)
