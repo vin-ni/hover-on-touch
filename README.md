@@ -111,7 +111,7 @@ These are some points I think are necessary to make this approach work ux wise:
 // Destroy the plugin and remove all event listeners:
 hoverontouch.destroy();
 
-// ReInit the plugin to parse new Links if they are added dynamically or new content is pushed to the pase (for example pagination)
+// ReInit the plugin to parse new Links if they are added dynamically or new content is pushed to the page (for example pagination)
 hoverontouch.reInitHoverOnTouch();
 ```
 
@@ -122,7 +122,7 @@ hoverontouch.reInitHoverOnTouch();
 - The script works on mobile, on desktop and devices that support mouse and touch events.
 
 
-
+0
 If anyone wants to contribute, just fork the project or write me at hi@vinzenzaubry.com :)
 
 Created by Vinzenz Aubry for sansho
