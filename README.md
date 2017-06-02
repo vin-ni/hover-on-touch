@@ -87,7 +87,7 @@ to
 
 ```
 ## Result
-On Tap Hold and Hover, the .cover div gets an opacity 0. On click or tap, the link is activated. 
+On Tap Hold and Hover, the .cover div gets an opacity 0. On click or tap, the link is triggered. 
 
 
 ## UX
@@ -110,4 +110,4 @@ These are some points I think are necessary to make this approach work ux wise:
 
 If anyone wants to contribute, just fork the project or write me at hi@vinzenzaubry.com :)
 
-Created by Vinzenz Aubry
+Created by Vinzenz Aubry for sansho
