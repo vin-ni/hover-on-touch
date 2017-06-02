@@ -2,11 +2,7 @@
 
 //  hoverontouch.js
 //  An alternative hover function on mobile devices.
-<<<<<<< HEAD
-//  Version 2.0 18/09/16
-=======
 //  Version 2.1 30/04/17
->>>>>>> 2.1-object-rewrite
 //
 //  Created by Vinzenz Aubry on 19/04/16. 
 //  Copyright 2017 Vinzenz Aubry. All rights reserved.
@@ -57,23 +53,6 @@ HoverOnTouch.prototype.init = function () {
     this.multiTouchGesture = false;
 };
 
-<<<<<<< HEAD
-    //bind new pressup for android
-    item.addEventListener("touchend", function(){
-        pressupFunction(event);
-    });
-
-    var mc = new Hammer.Manager(item);
-    mc.add( new Hammer.Tap({
-        time: 250,
-    }) );
-    mc.add(new Hammer.Press({
-        event: 'press',
-        pointer: 1,
-        threshold: 1000,
-        time: 1,
-    }));
-=======
 HoverOnTouch.prototype.addCss = function () {
      for (var i = 0; i < this.all_objects.length; i++) {
         var object = this.all_objects[i];
@@ -85,7 +64,6 @@ HoverOnTouch.prototype.addCss = function () {
             imagesArray[k].style.cssText = "pointer-events: none;"; 
         }
      }
->>>>>>> 2.1-object-rewrite
 
 };
 
@@ -118,21 +96,6 @@ HoverOnTouch.prototype.touchEvents = function () {
     this.handlerTouchendHoverontouch = this.touchendHoverontouch.bind(this);
 
 
-<<<<<<< HEAD
-mc.on('pressup', function(event) {
-    pressupFunction(event);
-    // unhideAll ();
-    // event.preventDefault();
-});
-}
-
-function pressupFunction (e) {
-    var elem = getClosest(event.target, ".object");
-    var elemCover = elem.querySelector('.cover');
-
-    elemCover.style.opacity = '1';
-}
-=======
     for (var i = 0; i < this.all_objects.length; i++) {
         var object = this.all_objects[i];
 
@@ -146,7 +109,6 @@ function pressupFunction (e) {
         object.addEventListener('mouseup', this.handlerMouseupHoverontouch);
         object.addEventListener('touchstart', this.handlerTouchstartHoverontouch);
         object.addEventListener('touchend', this.handlerTouchendHoverontouch);
->>>>>>> 2.1-object-rewrite
 
     }
 };
