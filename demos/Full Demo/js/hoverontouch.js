@@ -27,8 +27,9 @@
 // [x] Bind event to right click
 // [x] fix right click somehow?
 // [x] inline css inject
+// [x] 2 fingers preview not blocking -> add a second timer or check if 2 fingers?
+// [ ] mouse triggered on iphone
 
-// [?] 2 fingers preview not blocking -> add a second timer or check if 2 fingers?
 // [ ] Android no redraw on scroll
 
 
@@ -176,6 +177,8 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
         console.log("timer end, longpress detected");
         self.longpress = true;             
     },250);
+
+    e.preventDefault();
 };  
 
 HoverOnTouch.prototype.touchendHoverontouch = function (e) {
@@ -219,7 +222,8 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
     };
 
     // return false;
-    event.preventDefault();
+    // event.preventDefault();
+    e.preventDefault();
 };
 
 HoverOnTouch.prototype.destroy = function () {
