@@ -9,13 +9,11 @@ Here's a demo for [touch devices](http://vinzenzaubry.com/demos/hoverontouch/) a
 ![Preview of the Plugin for a shop](/media/shop.gif?raw=true "Preview")
 ![Preview of the Plugin for a text with an ad behind](/media/text.gif?raw=true "Preview")
 
-Some thoughts on what the plugin can be used for can be found on my [blog](http://vinzenzaubry.com/journal/hover-on-touch/) entry. 
-
 ## Installing
 ```javascript
 <script src="your/path/hoverontouch.js"></script>
 ```
-and add the following to your html
+and add the following to your html:
 ```javascript
 <script type="text/javascript">
     var HoverOnTouch = new HoverOnTouch();
@@ -27,6 +25,7 @@ When you touch an element, the »**hoverontouch--active**« class is applied and
 
 This brings additional possibilities for the user to interact with the content of a website. For example, the user can read secondary information while scrolling a page. It further makes it feel more "alive" and "applike". 
 
+Some thoughts on what the plugin can be used for can be found on my [blog](http://vinzenzaubry.com/journal/hover-on-touch/) entry. 
 
 ## HTML Structure
 
