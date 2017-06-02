@@ -2,7 +2,7 @@
 
 //  hoverontouch.js
 //  An alternative hover function on mobile devices.
-//  Version 2.1 30/04/17
+//  Version 3.0 02/06/17
 //
 //  Created by Vinzenz Aubry on 19/04/16. 
 //  Copyright 2017 Vinzenz Aubry. All rights reserved.
@@ -11,24 +11,6 @@
 
 
 //#To Do
-// [x] Only run on Mobile
-// [x] Add Loop
-// [x] block native  behaviour ios
-// [x] block native  behaviour android
-// [x] add hover on touch
-// [x] prohibit link if not moving after x seconds
-// [x] don't jump to link if scrolling fast and clicking shortly
-// [x] reset classes when coming back (not necessary anymore)
-// [x] restart gifs
-// [x] add css via javascript
-// [x] destroyer function
-// [x] reparse links function
-// [x] Mouse Wheel open in new Tab
-// [x] Bind event to right click
-// [x] fix right click somehow?
-// [x] inline css inject
-// [x] 2 fingers preview not blocking -> add a second timer or check if 2 fingers?
-
 // [ ] mouse click triggered on ios / android works -> ios bug?
 // [ ] Android no redraw on scroll
 
@@ -319,39 +301,6 @@ HoverOnTouch.prototype.getClosest = function (elem, selector) {
 
     return false;
 };
-
-
-
-
-
-
-
-
-
-
-// Old Stuff
-HoverOnTouch.prototype.resetGif = function (obj) {
-    var img = obj;
-    var imageUrl = img.src;
-    img.src = "#/";
-    img.src = imageUrl;
-};
-
-HoverOnTouch.prototype.restartImagesIfGif = function (imageArray) {
-    for (var i = imageArray.length - 1; i >= 0; i--) {
-        var fileExtension = imageArray[i].src.split('.').pop();
-        if (fileExtension === "gif") {
-           this.resetGif(imageArray[i]);
-        }
-    }
-};
-
-
-
-
-
-
-
 
 
 //  jshint ignore: end
