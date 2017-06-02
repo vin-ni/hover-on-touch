@@ -69,6 +69,7 @@ Each wrapper of your element, you want to use it on, needs the class hoverontouc
 ## Result
 On Tap Hold and Hover, the .cover div gets an opacity 0. On click or tap, the link is activated. 
 
+
 ## UX
 These are some points I think are necessary to make this approach work ux wise:
 
