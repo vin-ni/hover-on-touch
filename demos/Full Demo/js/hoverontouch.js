@@ -221,8 +221,6 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
         this.multiTouchGesture = false;
     };
 
-    // return false;
-    // event.preventDefault();
     e.preventDefault();
 };
 
@@ -253,18 +251,6 @@ HoverOnTouch.prototype.reInitHoverOnTouch = function () {
     this.touchEvents();
 };
 
-
-
-
-                                        // ===== Device Stuff ==== //
-
-//REWRITE THIS TO ONLY BE ON those elements
-//Block the "Tapohold" Context Menu on Android
-// window.oncontextmenu = function(event) {
-//      event.preventDefault();
-//      event.stopPropagation();
-//      return false;
-// };
 
                                         // ===== Helper Functions ===== //
 HoverOnTouch.prototype.filterGifs = function (imageArray) {
