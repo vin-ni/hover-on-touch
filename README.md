@@ -20,8 +20,22 @@ When you touch an element, the cover is hidden and the secondary information is 
 
 ## HTML Structure
 
-Each element has an object wrapper with an info and a cover div. Add as many objects as you want.
+Each wrapper of your element, you want to use it on, needs the class hoverontouch element has an object wrapper with an info and a cover div. Add as many objects as you want.
 ```html
+<a href="#" class="hoverontouch">
+    <div class="info pink"><img src="img/path"></div>
+</a>
+
+//or
+
+<a href="#" class="hoverontouch">
+    <div class="testObject">
+        <div class="info"><img src="img/path"></div>
+        <div class="cover"><img src="img/pth2"></div>
+    </div>
+</a>
+
+
 <div class="object" data-triggerlink="https://www.example.com">
         <div class="info">
             //Put the secondary Information here
