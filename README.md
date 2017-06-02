@@ -43,13 +43,16 @@ Each wrapper of your element you want to use it on, needs the class »**.hoveron
 ```
 
 In the CSS you need to rename your hover function this way:
+
 ```css
 .cover:hover
-```css
+```
+
 to
+
 ```css
 .hoverontouch--aktiv .cover
-```css
+```
 
 ### Css
 ```css
