@@ -28,7 +28,7 @@
 // [x] fix right click somehow?
 // [x] inline css inject
 
-// [ ] 2 fingers preview not blocking -> add a second timer or check if 2 fingers?
+// [?] 2 fingers preview not blocking -> add a second timer or check if 2 fingers?
 // [ ] Android no redraw on scroll
 
 
@@ -48,7 +48,8 @@ HoverOnTouch.prototype.init = function () {
     this.longpress = false;
     this.scrollStartX = 0;
     this.scrollStartY = 0;
-    this.multipleTouch = false;
+    this.multipleTouchAmount = 0;
+    this.multiTouchGesture = false;
 };
 
 HoverOnTouch.prototype.addCss = function () {
@@ -131,7 +132,8 @@ HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
     var object = this.getClosest(e.target, '.hoverontouch');
     object.classList.remove("hoverontouch--aktiv");
     if (object.getAttribute('data-link')) {
-        console.log("clicked");
+        console.log("clicked mouse");
+        alert("mouse click");
         var location = object.getAttribute('data-link');
         if (e.which === 1) {
             window.location.href=location;
@@ -148,11 +150,15 @@ HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
 HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
     // console.log("touchstart");
     console.log(e.touches);
-    if (e.touches.length > 1) {
 
-        console.log("more than 1 touch");
-        this.multipleTouch = true;
+    this.multipleTouchAmount = this.multipleTouchAmount + 1;
+    console.log(this.multipleTouchAmount);
+
+    if (this.multipleTouchAmount > 1) {
+        this.multiTouchGesture = true;
+        console.log("multiTouchGesture = true");
     }
+    
     //go up dom and add class
     var object = this.getClosest(e.target, '.hoverontouch');
     //restart gifs
@@ -170,7 +176,7 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
         console.log("timer end, longpress detected");
         self.longpress = true;             
     },250);
-};
+};  
 
 HoverOnTouch.prototype.touchendHoverontouch = function (e) {
     console.log("touchend");
@@ -178,8 +184,14 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
     object.classList.remove("hoverontouch--aktiv");
     clearTimeout(this.pressTimer);
 
-    if (!this.longpress) {
-        //this is a click, so go to the data-link, but only if data link exists and not more scrolling as 10px
+    console.log("MultipleTouchAmount = " + this.multipleTouchAmount);
+    console.log(e.touches);
+    this.multipleTouchAmount = this.multipleTouchAmount - 1;
+    console.log(this.multipleTouchAmount);
+    console.log("MultitouchGesture = " + this.multiTouchGesture);
+
+    if (!this.longpress && this.multiTouchGesture === false && this.multipleTouchAmount === 0) {
+        //this is a click, so go to the data-link, but only if data link exists and not more scrolling than 10px
         // calculate Distance
         var XOriginal = this.scrollStartX;
         var XEnd = e.changedTouches[0].pageX;
@@ -189,19 +201,24 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
         var YOriginal = this.scrollStartY;
         var distanceY = Math.abs(YOriginal - YEnd);
 
-        // 
-        if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5 && this.multipleTouch === false) {
-            alert();
-            console.log("clicked");
+        if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5) {
+            alert("touch link");
             // var location = object.getAttribute('data-link');
             // window.location.href=location;
         };
-        //put back to false if false
-        this.multipleTouch = false;
+        
     } else {
         console.log("this was longpress");
         this.longpress = false;
     };
+
+    //set back multiTouchGesture to false if multi touch end
+    if (this.multipleTouchAmount === 0) {
+        console.log("set MultiTouchGesture = false");
+        this.multiTouchGesture = false;
+    };
+
+    // return false;
     event.preventDefault();
 };
 
