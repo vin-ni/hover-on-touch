@@ -122,7 +122,7 @@ hoverontouch.reInitHoverOnTouch();
 - The script works on mobile, on desktop and devices that support mouse and touch events.
 
 
-0
+### Contribution
 If anyone wants to contribute, just fork the project or write me at hi@vinzenzaubry.com :)
 
 Created by Vinzenz Aubry for sansho
