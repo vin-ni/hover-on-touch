@@ -28,8 +28,8 @@
 // [x] fix right click somehow?
 // [x] inline css inject
 // [x] 2 fingers preview not blocking -> add a second timer or check if 2 fingers?
-// [ ] mouse triggered on iphone
 
+// [ ] mouse click triggered on ios
 // [ ] Android no redraw on scroll
 
 
@@ -149,8 +149,9 @@ HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
 
 
 HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
-    // console.log("touchstart");
+    console.log("touchstart");
     console.log(e.touches);
+    // alert("touch start");
 
     this.multipleTouchAmount = this.multipleTouchAmount + 1;
     console.log(this.multipleTouchAmount);
@@ -177,7 +178,12 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
         console.log("timer end, longpress detected");
         self.longpress = true;             
     },250);
+
+    //can't prevent default click, as it would break scrolling. Passive eventlisteners are not fully working yet
+    // e.stopPropagation();
+    // e.preventDefault();
 };  
+
 
 HoverOnTouch.prototype.touchendHoverontouch = function (e) {
     console.log("touchend");
@@ -203,9 +209,8 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
         var distanceY = Math.abs(YOriginal - YEnd);
 
         if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5) {
-            alert("touch link");
-            // var location = object.getAttribute('data-link');
-            // window.location.href=location;
+            var location = object.getAttribute('data-link');
+            window.location.href=location;
         };
         
     } else {
@@ -220,6 +225,8 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
     };
 
     e.preventDefault();
+    e.stopPropagation();
+    event.stopPropagation();
 };
 
 HoverOnTouch.prototype.destroy = function () {
