@@ -4,12 +4,12 @@ This is a pure Javascript Plugin for an alternative hover function on mobile dev
 
 Here's a demo for [touch devices](http://vinzenzaubry.com/demos/hoverontouch/) a [shop demo](http://vinzenzaubry.com/demos/hoverontouch/) and here's a demo video for [desktops](http://vinzenzaubry.com/demos/hoverontouch/desktop).
 
-Some thoughts on what the plugin can be used for can be found on my [blog](http://vinzenzaubry.com/journal/hover-on-touch/) entry. 
-
 ![Preview of the Plugin on a Portfolio](/media/readme.gif?raw=true "Preview")
 ![Preview with nice colors and animation](/media/fun.gif?raw=true "Preview")
 ![Preview of the Plugin for a shop](/media/shop.gif?raw=true "Preview")
 ![Preview of the Plugin for a text with an ad behind](/media/text.gif?raw=true "Preview")
+
+Some thoughts on what the plugin can be used for can be found on my [blog](http://vinzenzaubry.com/journal/hover-on-touch/) entry. 
 
 ## Installing
 ```javascript
@@ -17,14 +17,14 @@ Some thoughts on what the plugin can be used for can be found on my [blog](http:
 ```
 
 ## Description
-When you touch an element, the »**hoverontouch--active**« class is applied and triggers the effect applied via css. For example it can hide an element and show some secondary information, initiate a link hover or just trigger any kind of css animation. If you release under 250ms, the touch event is interpreted as a click and a redirection to the given link is triggered (if there is one provided). Otherwise, if you hold longer, the event is interpreted as a »Taphold« and the old status is shown again on release. 
+When you touch an element, the »**hoverontouch--active**« class is applied and triggers the effect defined in your css. For example it can hide an element and show some secondary information, initiate a link hover or just trigger any kind of css animation. If you release under 250ms, the touch event is interpreted as a click and a redirection to the given link is triggered (if there is one provided). Otherwise, if you hold longer, the event is interpreted as a »Taphold« and the old status is shown again on release. 
 
-This brings an additional possibility for the user to interact with the content of a website. The user can read the secondary information while scrolling the page for example. It further makes it feel more "alive" and "applike". 
+This brings additional possibilities for the user to interact with the content of a website. For example, the user can read secondary information while scrolling a page. It further makes it feel more "alive" and "applike". 
 
 
 ## HTML Structure
 
-Each wrapper of your element, you want to use it on, needs the class hoverontouch element has an object wrapper with an info and a cover div. Add as many objects as you want.
+Each wrapper of your element you want to use it on, needs the class »**.hoverontouch**« Add as many objects as you like.
 ```html
 <a href="www.example.com" class="hoverontouch">
     <div class="cover"><img src="img/path"></div>
@@ -41,6 +41,16 @@ Each wrapper of your element, you want to use it on, needs the class hoverontouc
 
 
 ```
+
+In the CSS you need to rename your hover function this way:
+```css
+.cover:hover
+```css
+to
+```css
+.hoverontouch--aktiv .cover
+```css
+
 ### Css
 ```css
 /*Example*/
