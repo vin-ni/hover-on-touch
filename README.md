@@ -22,13 +22,13 @@ When you touch an element, the cover is hidden and the secondary information is 
 
 Each wrapper of your element, you want to use it on, needs the class hoverontouch element has an object wrapper with an info and a cover div. Add as many objects as you want.
 ```html
-<a href="#" class="hoverontouch">
-    <div class="info pink"><img src="img/path"></div>
+<a href="www.example.com" class="hoverontouch">
+    <div class="cover"><img src="img/path"></div>
 </a>
 
 //or
 
-<a href="#" class="hoverontouch">
+<a href="www.example.com" class="hoverontouch">
     <div class="testObject">
         <div class="info"><img src="img/path"></div>
         <div class="cover"><img src="img/pth2"></div>
@@ -36,14 +36,6 @@ Each wrapper of your element, you want to use it on, needs the class hoverontouc
 </a>
 
 
-<div class="object" data-triggerlink="https://www.example.com">
-        <div class="info">
-            //Put the secondary Information here
-        </div>
-        <div class="cover">
-            // Put the cover Informaton here
-        </div>
-</div>
 ```
 ### Css
 ```css
@@ -62,6 +54,10 @@ Each wrapper of your element, you want to use it on, needs the class hoverontouc
     background-color: blue;
 }
 
+.hoverontouch--aktiv .cover {
+    opacity: 0;
+}
+
 .info {
     position: absolute;
     width: inherit;
@@ -70,22 +66,25 @@ Each wrapper of your element, you want to use it on, needs the class hoverontouc
 }
 
 ```
+## Result
+On Tap Hold and Hover, the .cover div gets an opacity 0. On click or tap, the link is activated. 
+
 ## UX
 These are some points I think are necessary to make this approach work ux wise:
 
-- all elements of the grid should have a second layer that can be shown (to be consistent)
-- the elements should take reasonable space on the screen, so the user touches them automatically while scrolling (Otherwise this feature would have to be explained)
-- the secondary information should leave space for the thumb
+- all clickable elements should have a second layer or an animation (to be consistent)
+- the elements should take reasonable space on the screen, so the user touches them automatically while scrolling (Otherwise this feature would need to be explained)
+- if there is relevant secondary information, it should leave space for the thumb
 
 [Link] (http://vinzenzaubry.com/journal/hover-on-touch/) to my blogpost with additional thoughts.
 
 ## Features
 
-- Put anything inside the info div
+- Put any html elements together
 - Works while scrolling, so users can see details while scrolling through the page
 - Gifs restart on display
 - For looping animations save the gifs as »looping«, for normal animations save them as »playing once«
-- The script will not interfere with any hover animations on desktop browsers (non touch devices) .
+- The script works on mobile, on desktop and devices that support mouse and touch events.
 
 
 If anyone wants to contribute, just fork the project or write me at hi@vinzenzaubry.com :)
