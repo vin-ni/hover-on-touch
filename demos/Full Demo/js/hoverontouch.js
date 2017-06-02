@@ -177,8 +177,6 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
         console.log("timer end, longpress detected");
         self.longpress = true;             
     },250);
-
-    e.preventDefault();
 };  
 
 HoverOnTouch.prototype.touchendHoverontouch = function (e) {
