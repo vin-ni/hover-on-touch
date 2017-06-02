@@ -1,6 +1,6 @@
 body {
-        font-family: 'Open Sans', sans-serif;
-        overflow-x:hidden;
+    font-family: 'Open Sans', sans-serif;
+    overflow-x:hidden;
 }
 
 
@@ -18,6 +18,7 @@ h1 {
     margin: 0;
     margin-top: 10px;
     margin-bottom: 10px;
+    font-weight: 600;
 }
 
 h2 {
@@ -30,15 +31,10 @@ a {
   text-decoration: none;
   color: black;
   font-weight: 600;
+  cursor: pointer;
 }
 
-a:visited {
-  font-weight: normal;
-}
 
-a:hover {
-  text-decoration: underline;
-}
 
 ::selection {
   background: #FF3333; /* WebKit/Blink Browsers */
@@ -63,36 +59,8 @@ a:hover {
     margin-bottom: 20px;
 }
 
-.cover {
-    position: absolute;
-    width: inherit;
-    height: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.info {
-    position: absolute;
-    width: inherit;
-    height: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
 .desktop {
     visibility: hidden;
-}
-
-.pink {
-    background-color: #fc97ff;
-}
-
-.blue {
-    background-color: #2e1e89;
 }
 
 .lightBlue {
@@ -111,8 +79,6 @@ img {
     width: inherit;
     height: auto;
 }
-
-
 
 .desktop {
     visibility: visible;
@@ -165,13 +131,184 @@ img {
    font-size: 1.4em;
 }
 
+.coverTest {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 1;
+}
+
+.coverTest:hover, .coverTest.hoverOnTouch  {
+    opacity: 0;
+}
+
+.infoTest {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    opacity: 1;
+}
+
+
+/*==============New CSS==============*/
+.wrapper {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.testObject {
+    background-color: yellow;
+    overflow: hidden;
+    position: relative;
+
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.marginBottom20 {
+    margin-bottom: 20px;
+}
+
+.hoverontouch--aktiv .testObject {
+    background-color: blue;
+}
+
+.info img, .cover img {
+    display: block;
+    height: auto;
+    overflow: hidden;
+    width: 100vw;
+    max-width: 375px;
+}
+
+.cover {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding-top: 0;
+    bottom: 0;
+    opacity: 1;
+}
+
+.hoverontouch--aktiv .cover {
+    opacity: 0;
+}
+
+.pink {
+    background-color: #fc97ff;
+}
+
+.blue {
+    background-color: #2e1e89;
+}
+
+.emptyDiv {
+    min-height: 220px;
+    background: yellow;
+    width: 100vw;
+    max-width: 375px;
+}
+
+.link {
+    position: relative;
+    margin: 0 auto;
+    width: 250px;
+    height: auto;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: underline;
+
+    padding: 3px 5px 5px 5px;
+    border-radius: 7px;
+    background-color: #fff;
+
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.hoverontouch--aktiv .link {
+    background-color: #c4c4c4;
+    padding: 3px 15px 5px 15px;
+}
+
+.links {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 375px;
+}
+
+.link2, .link3 {
+    position: relative;
+    margin-bottom: 20px;
+    height: auto;
+    font-size: 1.2rem;
+    cursor: pointer;
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+}
+
+.link2:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.25s ease-in-out 0s;
+  transition: all 0.25s ease-in-out 0s;
+}
+
+.hoverontouch--aktiv .link2:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.link3:before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  visibility: visible;
+
+  -webkit-transition: all 0.25s ease-in-out 0s;
+  transition: all 0.25s ease-in-out 0s;
+}
+
+.hoverontouch--aktiv .link3:before {
+  width: 100%;
+  visibility: visible;
+}
+
+
+
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
 @media screen and (max-device-width: 1024px){
-  .desktop {
-    visibility: hidden;
-  }
+      
 }
 
 
@@ -185,49 +322,26 @@ img {
 
 /* Extra Small Devices, Phones */ 
 @media only screen and (min-width : 480px) {
-    .wrapper {
-    }
-
-    .object {
-        max-width: 350px;
-        height: 220px;
-    }
-
-    .cover {
-        max-width: 350px;
-    }
-
-    .info {
-        max-width: 350px;
-    }
-
-    img {
-        max-width: 350px;
-    }
-
 
 }
 
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 767px) {
-    .wrapper2 {
-        display: flex;
-    }
-
     .description {
         text-align: center;
+        font-size: 1rem;
     }
-
-    .object {
-        width: 350px;
-    }
-
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
-
+    .description{
+      font-size: 1.2rem;
+      margin: 0 auto;
+      max-width: 70vw;
+      margin-bottom: 20px;
+    }
 }
 
 /* Large Devices, Wide Screens */

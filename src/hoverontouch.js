@@ -33,30 +33,43 @@ for (var i = 0; i < all_objects.length; ++i) {
     }));
 
 
-//Function triggered on tap and press
-mc.on('press tap', function(event) {
-        event.preventDefault();
+    //Function triggered on tap and press
+    mc.on('press tap', function(event) {
+            event.preventDefault();
 
+            var elem = getClosest(event.target, ".object");
+            var elemInfo = elem.querySelector('.info');
+            var elemCover = elem.querySelector('.cover');
+
+            elemCover.style.opacity = '0';
+
+            // Checking if Image is a Gif. If "Yes" restart the Gif from the beginning
+            var images = elemInfo.querySelectorAll('img');
+            restartImagesIfGif (images);
+
+            if (event.type == "tap") {
+                elemCover.style.opacity = '1';
+                
+                // Get the link when tapped
+                var link = elem.dataset.triggerlink;
+                window.location.href = link;
+                
+                }   
+            
+        });
+
+    mc.on('pressup', function(event) {
+        // event.preventDefault();
         var elem = getClosest(event.target, ".object");
-        var elemInfo = elem.querySelector('.info');
         var elemCover = elem.querySelector('.cover');
 
-        elemCover.style.opacity = '0';
+        elemCover.style.opacity = '1';
 
-        // Checking if Image is a Gif. If "Yes" restart the Gif from the beginning
-        var images = elemInfo.querySelectorAll('img');
-        restartImagesIfGif (images);
-
-        if (event.type == "tap") {
-            elemCover.style.opacity = '1';
-            
-            // Get the link when tapped
-            var link = elem.dataset.triggerlink;
-            window.location.href = link;
-            
-            }   
-        
+        // unhideAll might be unnecesary on deploy
+        // unhideAll ();
+        // event.preventDefault();
     });
+<<<<<<< HEAD
 
 mc.on('pressup', function(event) {
     pressupFunction(event);
@@ -70,6 +83,8 @@ function pressupFunction (e) {
     var elemCover = elem.querySelector('.cover');
 
     elemCover.style.opacity = '1';
+=======
+>>>>>>> 2.1-object-rewrite
 }
 
 

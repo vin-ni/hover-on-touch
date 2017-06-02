@@ -1,4 +1,4 @@
-# Hover on Touch 2.0
+# Hover on Touch 2.1
 
 This is a pure Javascript Plugin for an alternative hover function on mobile devices. It shows secondary information on »**Taphold**« and goes to a link on »**Tap**«.
 
@@ -7,10 +7,7 @@ Here's a demo for [touch devices](http://vinzenzaubry.com/demos/hoverontouch/) a
 Some thoughts on what the plugin can be used for can be found on my [blog](http://vinzenzaubry.com/journal/hover-on-touch/) entry. 
 
 ## Installing
-This Plugin requires Hammer.js. Add it before the plugin in your html:
-
 ```javascript
-<script src="http://hammerjs.github.io/dist/hammer.min.js"></script>
 <script src="your/path/hoverontouch.js"></script>
 ```
 
