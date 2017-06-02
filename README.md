@@ -42,7 +42,9 @@ Each wrapper of your element you want to use it on, needs the class »**.hoveron
 
 ```
 
-In the CSS you need to rename your hover function this way:
+### Css
+
+In the CSS you need to rename your hover functions this way:
 
 ```css
 .cover:hover
@@ -54,9 +56,10 @@ to
 .hoverontouch--aktiv .cover
 ```
 
-### Css
+»**Example:**«
+
 ```css
-/*Example*/
+
 .object {
     width: 100vw;
     height: 250px;
