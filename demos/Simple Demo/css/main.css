@@ -31,6 +31,10 @@ a:hover {
     background-color: blue;
 }
 
+.hoverontouch--aktiv .cover {
+    opacity: 0;
+}
+
 .info {
     position: absolute;
     width: inherit;

@@ -22,6 +22,8 @@ function HoverOnTouch() {
     this.touchEvents();
 }
 
+
+
 HoverOnTouch.prototype.init = function () {
     //gather all elements
     this.all_objects = document.getElementsByClassName('hoverontouch');
@@ -115,7 +117,7 @@ HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
     var object = this.getClosest(e.target, '.hoverontouch');
     object.classList.remove("hoverontouch--aktiv");
     if (object.getAttribute('data-link')) {
-        console.log("clicked mouse");
+        // console.log("clicked mouse");
         alert("mouse click");
         var location = object.getAttribute('data-link');
         if (e.which === 1) {
@@ -125,22 +127,18 @@ HoverOnTouch.prototype.mouseupHoverontouch = function (e) {
             var win = window.open(location, '_blank');
             // win.focus();
         };
-        console.log("run redirect"); 
+        //console.log("run redirect"); 
     };
 };
 
 
 HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
-    console.log("touchstart");
-    console.log(e.touches);
-    // alert("touch start");
+    //console.log("touchstart");
 
     this.multipleTouchAmount = this.multipleTouchAmount + 1;
-    console.log(this.multipleTouchAmount);
 
     if (this.multipleTouchAmount > 1) {
         this.multiTouchGesture = true;
-        console.log("multiTouchGesture = true");
     }
     
     //go up dom and add class
@@ -155,9 +153,9 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
     this.scrollStartY = e.changedTouches[0].pageY;
 
     var self = this;
-    console.log("timer runs");
+    //console.log("timer runs");
     this.pressTimer = window.setTimeout(function() { 
-        console.log("timer end, longpress detected");
+        //console.log("timer end, longpress detected");
         self.longpress = true;             
     },250);
 
@@ -168,16 +166,12 @@ HoverOnTouch.prototype.touchstartHoverontouch = function (e) {
 
 
 HoverOnTouch.prototype.touchendHoverontouch = function (e) {
-    console.log("touchend");
+    // console.log("touchend");
     var object = this.getClosest(e.target, '.hoverontouch');
     object.classList.remove("hoverontouch--aktiv");
     clearTimeout(this.pressTimer);
 
-    console.log("MultipleTouchAmount = " + this.multipleTouchAmount);
-    console.log(e.touches);
     this.multipleTouchAmount = this.multipleTouchAmount - 1;
-    console.log(this.multipleTouchAmount);
-    console.log("MultitouchGesture = " + this.multiTouchGesture);
 
     if (!this.longpress && this.multiTouchGesture === false && this.multipleTouchAmount === 0) {
         //this is a click, so go to the data-link, but only if data link exists and not more scrolling than 10px
@@ -196,13 +190,11 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
         };
         
     } else {
-        console.log("this was longpress");
         this.longpress = false;
     };
 
     //set back multiTouchGesture to false if multi touch end
     if (this.multipleTouchAmount === 0) {
-        console.log("set MultiTouchGesture = false");
         this.multiTouchGesture = false;
     };
 

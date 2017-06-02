@@ -142,10 +142,6 @@ img {
     opacity: 1;
 }
 
-.coverTest:hover, .coverTest.hoverOnTouch  {
-    opacity: 0;
-}
-
 .infoTest {
     position: absolute;
     width: inherit;
