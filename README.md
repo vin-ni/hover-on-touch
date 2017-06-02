@@ -1,6 +1,6 @@
 # Hover on Touch 3.0
 
-This is a pure Javascript Plugin for an alternative hover function on mobile devices. It triggers a hover on  »**Taphold**« and goes to a possible link on »**Tap**«. It works with all html elements.
+This is a pure Javascript Plugin for an alternative hover function that works on mobile and desktop devices. It triggers a hover css class on »**Taphold**« and goes to a possible link on »**Tap**«. It works with all html elements.
 
 Here's a demo for [touch devices](http://vinzenzaubry.com/demos/hoverontouch/) a [shop demo](http://vinzenzaubry.com/demos/hoverontouch/) and here's a demo video for [desktops](http://vinzenzaubry.com/demos/hoverontouch/desktop).
 
