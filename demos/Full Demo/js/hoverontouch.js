@@ -29,7 +29,7 @@
 // [x] inline css inject
 // [x] 2 fingers preview not blocking -> add a second timer or check if 2 fingers?
 
-// [ ] mouse click triggered on ios
+// [ ] mouse click triggered on ios / android works -> ios bug?
 // [ ] Android no redraw on scroll
 
 
@@ -226,7 +226,6 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
 
     e.preventDefault();
     e.stopPropagation();
-    event.stopPropagation();
 };
 
 HoverOnTouch.prototype.destroy = function () {
