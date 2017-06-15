@@ -124,4 +124,4 @@ hoverontouch.reInitHoverOnTouch();
 ### Contribution
 If anyone wants to contribute, just fork the project or write me at vinzenz@sansho.studio :)
 
-Created by Vinzenz Aubry for sansho
+Created by Vinzenz Aubry & Emmanuel Durgoni
