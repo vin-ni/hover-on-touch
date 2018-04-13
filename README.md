@@ -25,7 +25,7 @@ When you touch an element, the »**hoverontouch--active**« class is applied and
 
 This brings additional possibilities for the user to interact with the content of a website. For example, the user can read secondary information while scrolling a page. It further makes it feel more "alive" and "applike". 
 
-Some thoughts on what the plugin can be used for can be found on my [blog](http://vinzenzaubry.com/journal/hover-on-touch/) entry. 
+Some thoughts on what the plugin can be used for can be found on my [blog](https://vinzenzaubry.com/journal/?p=37) entry. 
 
 ## HTML Structure
 
@@ -102,7 +102,7 @@ These are some points I think are necessary to make this approach work ux wise:
 - the elements should take reasonable space on the screen, so the user touches them automatically while scrolling (Otherwise this feature would need to be explained)
 - if there is relevant secondary information, it should leave space for the thumb
 
-[Link] (https://vinzenzaubry.com/journal/?p=37) to my blogpost with additional thoughts.
+[Link](https://vinzenzaubry.com/journal/?p=37) to my blogpost with additional thoughts.
 
 ## Features & Functions
 
