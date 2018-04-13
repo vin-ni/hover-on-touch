@@ -102,7 +102,7 @@ These are some points I think are necessary to make this approach work ux wise:
 - the elements should take reasonable space on the screen, so the user touches them automatically while scrolling (Otherwise this feature would need to be explained)
 - if there is relevant secondary information, it should leave space for the thumb
 
-[Link] (http://vinzenzaubry.com/journal/hover-on-touch/) to my blogpost with additional thoughts.
+[Link] (https://vinzenzaubry.com/journal/?p=37) to my blogpost with additional thoughts.
 
 ## Features & Functions
 
