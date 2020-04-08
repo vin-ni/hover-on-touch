@@ -21,7 +21,7 @@ and add the following to your html:
 ```
 
 ## Description
-When you touch an element, the »**hoverontouch--active**« class is applied and triggers the effect defined in your css. For example it can hide an element and show some secondary information, initiate a link hover or just trigger any kind of css animation. If you release under 250ms, the touch event is interpreted as a click and a redirection to the given link is triggered (if there is one provided). Otherwise, if you hold longer, the event is interpreted as a »Taphold« and the old status is shown again on release. 
+When you touch an element, the »**hoverontouch--aktiv**« class is applied and triggers the effect defined in your css. For example it can hide an element and show some secondary information, initiate a link hover or just trigger any kind of css animation. If you release under 250ms, the touch event is interpreted as a click and a redirection to the given link is triggered (if there is one provided). Otherwise, if you hold longer, the event is interpreted as a »Taphold« and the old status is shown again on release. 
 
 This brings additional possibilities for the user to interact with the content of a website. For example, the user can read secondary information while scrolling a page. It further makes it feel more "alive" and "applike". 
 
