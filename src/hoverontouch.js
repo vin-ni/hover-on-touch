@@ -101,7 +101,7 @@ HoverOnTouch.prototype.mouseenterHoverontouch = function (e) {
     //go up dom and add class
     var object = this.getClosest(e.target, '.hoverontouch');
     //restart images if gif
-    this.restartImagesIfGif(object.allImages);
+    this.restartGifs(object.allImages);
 
     object.className += " hoverontouch--aktiv";
 };
