@@ -14,6 +14,8 @@
 // [ ] mouse click triggered on ios / android works -> ios bug?
 // [ ] Android no redraw on scroll
 
+window.oncontextmenu = function() { return false; } // https://stackoverflow.com/questions/41060472/how-to-disable-the-context-menu-on-long-press-when-using-device-mode-in-chrome
+
 
 function HoverOnTouch() {
     this.init();
