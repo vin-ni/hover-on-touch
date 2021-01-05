@@ -14,6 +14,8 @@
 // [ ] mouse click triggered on ios / android works -> ios bug?
 // [ ] Android no redraw on scroll
 
+window.oncontextmenu = function() { return false; } // https://stackoverflow.com/questions/41060472/how-to-disable-the-context-menu-on-long-press-when-using-device-mode-in-chrome
+
 
 function HoverOnTouch() {
     this.init();
@@ -176,13 +178,18 @@ HoverOnTouch.prototype.touchendHoverontouch = function (e) {
     if (!this.longpress && this.multiTouchGesture === false && this.multipleTouchAmount === 0) {
         //this is a click, so go to the data-link, but only if data link exists and not more scrolling than 10px
         // calculate Distance
-        var XOriginal = this.scrollStartX;
-        var XEnd = e.changedTouches[0].pageX;
-        var distanceX = Math.abs(XOriginal - XEnd);
+        var distanceX = 0;
+        var distanceY = 0;
+        if (! e.changedTouches.length === 0) {
+          // if there are no changed touches, just show the link
+          var XOriginal = this.scrollStartX;
+          var XEnd = e.changedTouches[0].pageX;
+          distanceX = Math.abs(XOriginal - XEnd);
 
-        var YEnd = e.changedTouches[0].pageY;
-        var YOriginal = this.scrollStartY;
-        var distanceY = Math.abs(YOriginal - YEnd);
+          var YEnd = e.changedTouches[0].pageY;
+          var YOriginal = this.scrollStartY;
+          distanceY = Math.abs(YOriginal - YEnd);
+        }
 
         if (object.getAttribute('data-link') && distanceY <= 5 && distanceX <= 5) {
             var location = object.getAttribute('data-link');
